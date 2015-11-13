@@ -1,9 +1,21 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @topic.title %>
-</p>
+<h1><%= @topic.title %></h1>
+  <% if @topic.questions.any? %>
+    <ul>
+      <%= @topic.questions.each do |q| %>
+        <li>
+          <%= q.title %>
+        
+        </li>
+      <% end %>
+    </ul>
+  <% else %>
+    <p>No Questions. Please add a question!</p>
+  <% end %>
 
+
+
+<%= link_to 'Add Question', new_topic_question_path(@topic) %> |
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
 <%= link_to 'Back', topics_path %>
