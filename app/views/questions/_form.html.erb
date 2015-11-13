@@ -1,4 +1,4 @@
-<%= form_for [@topic,@question] do |f| %>
+<%= bootstrap_form_for [@topic,@question] do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
@@ -11,21 +11,7 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :title %><br>
-    <%= f.text_field :title %>
-  </div>
-
-  <div class="radio">
-    <% @question_types.each do |t| %>
-      <label>
-        <%= f.radio_button :type, t[1] %>
-        <%= t[0] %>
-      </label>
-    <% end %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+  <%= f.text_field :title %>
+  <%= f.select :kind, @question_types, { label: "Question Type" }, { class: "selectpicker" } %>
+  <%= f.submit %>
 <% end %>

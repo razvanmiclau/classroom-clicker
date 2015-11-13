@@ -1,26 +1,28 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Topics</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @topics.each do |topic| %>
+<% if @topics.any? %>
+  <table class="table">
+    <thead>
       <tr>
-        <td><%= topic.title %></td>
-        <td><%= link_to 'Show', topic %></td>
-        <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-        <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Title</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @topics.each do |topic| %>
+        <tr>
+          <td><%= topic.title %></td>
+          <td><%= link_to 'Show', topic %></td>
+          <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
+          <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+<h1>Please add some topics</h1>
+<% end %>
 
 <br>
 

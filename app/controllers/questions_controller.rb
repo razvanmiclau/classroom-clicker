@@ -25,7 +25,6 @@ class QuestionsController < ApplicationController
   # POST /questions
   # POST /questions.json
   def create
-    # @question = Question.new(question_params)
     @question = @topic.questions.build(question_params)
     respond_to do |format|
       if @question.save
@@ -43,7 +42,7 @@ class QuestionsController < ApplicationController
   def update
     respond_to do |format|
       if @question.update(question_params)
-        format.html { redirect_to @question, notice: 'Question was successfully updated.' }
+        format.html { redirect_to @topic, notice: 'Question was successfully updated.' }
         format.json { render :show, status: :ok, location: @question }
       else
         format.html { render :edit }
@@ -70,10 +69,10 @@ class QuestionsController < ApplicationController
 
     def set_question_type
       @question_types = [
-        [ "Open Question", "open"],
-        [ "Multiple-choice", "choice"],
-        [ "True/False", "true/false"],
-        [ "Image picker", "image"]
+        [ "Open Question", "Open Question"],
+        [ "Multiple-choice", "Multiple-choice"],
+        [ "True/False", "True/False"],
+        [ "Image picker", "Image picker"]
       ]
     end
 
@@ -83,6 +82,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :type, :topic_id)
+      params.require(:question).permit(:title, :kind, :topic_id)
     end
 end

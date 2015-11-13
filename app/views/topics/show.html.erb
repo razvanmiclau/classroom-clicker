@@ -2,19 +2,30 @@
 
 <h1><%= @topic.title %></h1>
   <% if @topic.questions.any? %>
-    <ul>
-      <%= @topic.questions.each do |q| %>
-        <li>
-          <%= q.title %>
-        
-        </li>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Question</th>
+          <th>Kind</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+      <% @topic.questions.each do |q| %>
+        <tr>
+          <td><%= q.title %></td>
+          <td><%= q.kind %></td>
+          <td><%= link_to 'Show', [@topic, q] %></td>
+          <td><%= link_to 'Edit', edit_topic_question_path(@topic, q) %></td>
+          <td><%= link_to 'Destroy', [@topic, q], method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
       <% end %>
-    </ul>
+    </tbody>
   <% else %>
     <p>No Questions. Please add a question!</p>
   <% end %>
-
-
+    </table>
 
 <%= link_to 'Add Question', new_topic_question_path(@topic) %> |
 <%= link_to 'Edit', edit_topic_path(@topic) %> |
