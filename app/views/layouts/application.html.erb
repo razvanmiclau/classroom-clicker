@@ -8,8 +8,6 @@
 </head>
 <body>
 
-
-
 <div id="wrapper" class="">
   <%= render 'nav' %>
 
@@ -18,6 +16,8 @@
       <div class="container-fluid">
           <div class="row">
               <div class="col-lg-12">
+                <p class="notice"><%= notice %></p>
+                <p class="alert"><%= alert %></p>
                   <%= yield %>
                   <!--<a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>-->
               </div>

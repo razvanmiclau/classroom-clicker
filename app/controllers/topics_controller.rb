@@ -1,5 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
+  before_action :is_teacher!, except: [ :index ]
 
   # GET /topics
   # GET /topics.json
@@ -71,4 +72,5 @@ class TopicsController < ApplicationController
     def topic_params
       params.require(:topic).permit(:title)
     end
+
 end
