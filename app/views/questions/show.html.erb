@@ -1,5 +1,15 @@
+<div class="row">
+  <%= link_to 'Back', @topic %>
+</div>
+
 <div class="jumbotron">
   <h1><%= @question.title %></h1>
 </div>
 
-<%= link_to 'Back', @topic %>
+<div class="row">
+  <% @question.choices.each do |c| %>
+    <div class="col-md-4">
+      <button class="btn btn-default btn-lg btn-block" type="button" name="button"><%= c.title %></button>
+    </div>
+  <% end %>
+</div>

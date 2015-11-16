@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @topic.questions.build
-    5.times { @questions.choices.build }
+    5.times { @question.choices.build }
   end
 
   # GET /questions/1/edit
@@ -85,6 +85,6 @@ class QuestionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params
-      params.require(:question).permit(:title, :kind, :topic_id)
+      params.require(:question).permit(:title, :kind, :topic_id, { choices_attributes: [:title, :question_id] })
     end
 end
