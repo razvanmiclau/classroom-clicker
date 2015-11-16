@@ -3,7 +3,7 @@ class QuestionsController < ApplicationController
   before_action :set_topic
   before_action :set_question_type, only: [:new, :create, :edit, :update]
   before_action :is_teacher!, except: [ :index ]
-  
+
   # GET /questions
   # GET /questions.json
   def index
@@ -18,6 +18,7 @@ class QuestionsController < ApplicationController
   # GET /questions/new
   def new
     @question = @topic.questions.build
+    5.times { @questions.choices.build }
   end
 
   # GET /questions/1/edit

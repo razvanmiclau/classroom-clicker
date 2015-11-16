@@ -13,5 +13,10 @@
 
   <%= f.text_field :title %>
   <%= f.select :kind, @question_types, { label: "Question Type" }, { class: "selectpicker" } %>
+
+  <%= f.fields_for :choices do |choice| %>
+    <%= choice.text_field :title, placeholder: "Enter an answer choice" %>
+  <% end %>
+
   <%= f.submit %>
 <% end %>
