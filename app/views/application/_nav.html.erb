@@ -6,11 +6,7 @@
         <li class="sidebar-brand">
           Welcome <%= current_user.first_name %>
         </li>
-        <li><a href="#">Topics (<%= Topic.count %>)</a></li>
-          <ul class="sub-nav">
-
-          </ul>
-        <li><a href="#">Participants</a></li>
+        <li><a href="#">Topics (<%= current_user.topics.count %>)</a></li>
         <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
 
       <% else %>

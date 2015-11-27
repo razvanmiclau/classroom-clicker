@@ -66,6 +66,25 @@
      margin-right: -250px;
  }
 
+ /* Notification Styles */
+ .notice-container{
+   position: absolute;
+   top:0;
+   right:0;
+   width:250px;
+   z-index: 9999;
+   background: rgba(46, 204, 113, 0.5)
+ }
+
+ .notice-container p {
+   padding: 1.75rem 0;
+   text-align: center;
+   margin: 0;
+   font-size: 1.25rem;
+   font-weight: 700;
+   color: #fff;
+ }
+
  /* Sidebar Styles */
 
  .sidebar-nav {
