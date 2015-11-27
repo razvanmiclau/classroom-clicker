@@ -15,8 +15,13 @@
   <%= f.select :kind, @question_types, { label: "Question Type" }, { class: "selectpicker" } %>
 
   <%= f.fields_for :choices do |choice| %>
-    <%= choice.text_field :title, placeholder: "Enter an answer choice" %>
+      <%= render 'choice_fields', :f => choice %>
+      <div class="links hidden">
+        <%= link_to_add_association 'add choice', f, :choices %>
+      </div>
   <% end %>
+
+
 
   <%= f.submit %>
 <% end %>
