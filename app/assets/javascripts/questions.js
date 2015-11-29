@@ -4,13 +4,12 @@
 $(document).ready(function() {
   $('.selectpicker').change(function(){
     var selection = $(this).val();
+
     if(selection === 'Multiple-choice'){
-      $('.links').removeClass('hidden');
-      $('.nested-fields').removeClass('hidden');
+      $('#custom_fields').removeClass('hidden');
       $('input[type=text]').focus();
     } else {
-      $('.links').addClass('hidden');
-      $('.nested-fields').addClass('hidden');
-    }
-  })
+      $('#custom_fields').addClass('hidden');
+    };
+  });
 });

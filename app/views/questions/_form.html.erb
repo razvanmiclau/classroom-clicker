@@ -14,14 +14,14 @@
   <%= f.text_field :title %>
   <%= f.select :kind, @question_types, { label: "Question Type" }, { class: "selectpicker" } %>
 
-  <%= f.fields_for :choices do |choice| %>
-      <%= render 'choice_fields', :f => choice %>
-      <div class="links hidden">
-        <%= link_to_add_association 'add choice', f, :choices %>
-      </div>
-  <% end %>
-
-
+  <div id="custom_fields" class="hidden">
+    <%= f.fields_for :choices do |choice| %>
+        <%= render 'choice_fields', :f => choice %>
+        <div class="links">
+          <%= link_to_add_association 'add choice', f, :choices %>
+        </div>
+    <% end %>
+  </div>
 
   <%= f.submit %>
 <% end %>
