@@ -6,6 +6,18 @@
   <h1><%= @question.title %></h1>
 </div>
 
+<% if @answers.any? %>
+  <div class="jumbotron">
+    <% @answers.each do |answer| %>
+      <p><%= answer.value %> <span><%= time_ago_in_words(answer.created_at) %> ago</span></p>
+    <% end %>
+  </div>
+<% else %>
+  <div class="row">
+    <h3>No answers. please share the answers link to students</h3>
+  </div>
+<% end %>
+
 <div class="row">
   <% @question.choices.each do |c| %>
     <div class="col-md-4">
@@ -13,3 +25,5 @@
     </div>
   <% end %>
 </div>
+
+<%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer) %>

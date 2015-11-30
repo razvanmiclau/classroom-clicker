@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   end
 
   resources :topics do
-    resources :questions
+    resources :questions do
+      resources :answers
+    end
   end
 
   # The priority is based upon order of creation: first created -> highest priority.

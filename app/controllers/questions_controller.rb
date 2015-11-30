@@ -13,6 +13,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   # GET /questions/1.json
   def show
+    @answers = @question.answers.all
   end
 
   # GET /questions/new

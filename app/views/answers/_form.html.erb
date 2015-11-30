@@ -1,0 +1,25 @@
+<%= bootstrap_form_for [@question, @answer], :url => topic_question_answers_path do |f| %>
+  <% if @question.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+
+      <ul>
+      <% @question.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if @question.choices.any? %>
+    <% @question.choices.each do |choice| %>
+      <div class="col-md-4">
+        <%= f.submit choice.title, class: 'btn btn-default btn-lg btn-block' %>
+      </div>
+    <% end %>
+
+  <% else %>
+  <%= f.text_field :value %>
+  <%= f.submit "Submit", class: "btn btn-default vote-btn" %>
+  <% end %>
+<% end %>
