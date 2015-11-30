@@ -1,7 +1,7 @@
 // Place all the behaviors and hooks related to the matching controller here.
 // All this logic will automatically be available in application.js.
 
-$(document).ready(function() {
+$(document).ready(function(){
   $('.selectpicker').change(function(){
     var selection = $(this).val();
 
@@ -12,4 +12,4 @@ $(document).ready(function() {
       $('#custom_fields').addClass('hidden');
     };
   });
-});
+})

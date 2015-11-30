@@ -1,4 +1,5 @@
 class AnswersController < ApplicationController
+  respond_to :html, :js
 
   def index
     @question = Question.find(params[:question_id])

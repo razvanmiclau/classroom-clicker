@@ -2,13 +2,16 @@
   <%= @question.title %>
 </h1>
 
-<div class="jumbotron">
-  <% @answers.each do |answer| %>
-    <p><%= answer.value %></p>
-  <% end %>
+<div id="answers" class="jumbotron">
+  <%= render 'answer' %>
 </div>
 
-
-<div class="row">
-  <%= render 'form' %>
-</div>
+<% if @question.choices.any? %>
+  <div class="row">
+    <%= render 'choices_form' %>
+  </div>
+<% else %>
+  <div class="row">
+    <%= render 'form' %>
+  </div>
+<% end %>

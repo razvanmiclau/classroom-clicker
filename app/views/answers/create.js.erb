@@ -1,0 +1,6 @@
+$('#new_answer input[type=submit]').on('click', function(){
+  var button_value = $(this).val();
+  console.log(button_value);
+  $('#new_answer input[type=text]').val(button_value);
+});
+$('#answers').html('<%= render j @answer %>')
