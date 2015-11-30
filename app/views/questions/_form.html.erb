@@ -14,7 +14,7 @@
   <%= f.text_field :title %>
   <%= f.select :kind, @question_types, { label: "Question Type" }, { class: "selectpicker" } %>
 
-  <div id="custom_fields" class="hidden">
+  <div id="custom_fields" style="display: none;">
     <%= f.fields_for :choices do |choice| %>
         <%= render 'choice_fields', :f => choice %>
         <div class="links">

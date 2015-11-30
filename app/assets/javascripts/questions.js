@@ -6,10 +6,10 @@ $(document).ready(function(){
     var selection = $(this).val();
 
     if(selection === 'Multiple-choice'){
-      $('#custom_fields').removeClass('hidden');
+      $('#custom_fields').fadeIn();
       $('input[type=text]').focus();
     } else {
-      $('#custom_fields').addClass('hidden');
+      $('#custom_fields').fadeOut();
     };
   });
 })
