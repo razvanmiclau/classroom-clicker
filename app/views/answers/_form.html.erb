@@ -11,7 +11,7 @@
     </div>
   <% end %>
 
-  <%= f.text_field :value %>
-  <%= f.submit "Submit", class: "btn btn-default vote-btn" %>
+  <%= f.text_field :value, skip_label: true, placeholder: 'Your answer' %>
+  <%= f.submit "Submit", class: "btn btn-primary vote-btn" %>
 
 <% end %>

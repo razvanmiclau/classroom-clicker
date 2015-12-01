@@ -11,6 +11,6 @@
     </div>
   <% end %>
 
-    <%= f.text_field :title %>
-    <%= f.submit %>
+    <%= f.text_field :title, placeholder: 'Insert topic name' %>
+    <%= f.submit 'Create Topic', class: 'btn btn-primary' %>
 <% end %>

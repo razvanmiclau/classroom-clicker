@@ -1,17 +1,18 @@
-<h2>Log in</h2>
+<h2>Login</h2><hr>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
 
-    <%= f.email_field :email, autofocus: true %>
-    <%= f.password_field :password, autocomplete: "off" %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Your E-mail' %>
+    <%= f.password_field :password, autocomplete: "off", placeholder: 'Your Password' %>
 
   <% if devise_mapping.rememberable? -%>
       <%= f.check_box :remember_me %>
   <% end -%>
 
   <div class="actions">
-    <%= f.submit "Log in" %>
+    <%= f.submit "Log in", class: 'btn btn-primary' %>
   </div>
 <% end %>
-
+<hr>
+<h4>Don't have an account?</h4>
 <%= render "devise/shared/links" %>

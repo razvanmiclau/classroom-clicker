@@ -1,29 +1,24 @@
-<div class="row">
-  <%= link_to 'Back', @topic %>
-</div>
-
 <div class="jumbotron">
-  <h1><%= @question.title %></h1>
+  <h1 class="text-center"><%= @question.title %></h1>
 </div>
 
+<div class="row">
 <% if @answers.any? %>
-  <div class="jumbotron">
+  <div class="col-sm-12">
     <% @answers.each do |answer| %>
-      <p><%= answer.value %> <span><%= time_ago_in_words(answer.created_at) %> ago</span></p>
+      <p class="bg-info answer-line"><strong>Anonymus: </strong><%= answer.value %> <small><%= time_ago_in_words(answer.created_at) %> ago</small></p>
     <% end %>
   </div>
 <% else %>
-  <div class="row">
+  <div class="col-sm-12">
     <h3>No answers. please share the answers link to students</h3>
   </div>
 <% end %>
-
-<div class="row">
-  <% @question.choices.each do |c| %>
-    <div class="col-md-4">
-      <button class="btn btn-default btn-lg btn-block" type="button" name="button"><%= c.title %></button>
-    </div>
-  <% end %>
 </div>
-
-<%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer) %>
+<hr>
+<div class="row">
+  <div class="col-sm-12">
+    <%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer), class: 'btn btn-primary' %>
+    <%= link_to 'Back', @topic, class: 'btn btn-default' %>
+  </div>
+</div>

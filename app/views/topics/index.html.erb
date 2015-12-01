@@ -1,29 +1,24 @@
 <p id="notice"><%= notice %></p>
 
+<div class="page-header">
+  <h1>Your topics <small><%= link_to 'New Topic', new_topic_path, class: 'btn btn-xs btn-primary' %></small></h1>
+</div>
+
 <% if @topics.any? %>
   <table class="table">
-    <thead>
-      <tr>
-        <th>Title</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
     <tbody>
       <% @topics.each do |topic| %>
         <tr>
           <td><%= topic.title %></td>
-          <td><%= link_to 'Show', topic %></td>
-          <td><%= link_to 'Edit', edit_topic_path(topic) %></td>
-          <td><%= link_to 'Destroy', topic, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td><%= link_to 'Show', topic, class: 'btn btn-success btn-sm' %></td>
+          <td><%= link_to 'Edit', edit_topic_path(topic), class: 'btn btn-warning btn-sm' %></td>
+          <td><%= link_to 'Destroy', topic,class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
     </tbody>
   </table>
 <% else %>
-<h1>Please add some topics</h1>
+<h4>Why don't you add a new topic?</h4>
 <% end %>
 
 <br>
-
-<%= link_to 'New Topic', new_topic_path %>

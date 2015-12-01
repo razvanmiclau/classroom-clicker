@@ -1,17 +1,19 @@
-<h1>
-  <%= @question.title %>
-</h1>
-
-<div id="answers" class="jumbotron">
-  <%= render 'answer' %>
+<div class="jumbotron">
+  <h1 class="text-center"><%= @question.title %></h1>
 </div>
 
+<div id="answers">
+  <%= render 'answer' %>
+</div>
+<hr>
 <% if @question.choices.any? %>
   <div class="row">
-    <%= render 'choices_form' %>
+      <%= render 'choices_form' %>
   </div>
 <% else %>
   <div class="row">
-    <%= render 'form' %>
+    <div class="col-sm-12">
+      <%= render 'form' %>
+    </div>
   </div>
 <% end %>
