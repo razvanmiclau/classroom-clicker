@@ -1,4 +1,4 @@
-<%= bootstrap_form_for [@question, @answer], :url => topic_question_answers_path do |f| %>
+<%= bootstrap_form_for [@question, @answer], remote: true, :url => topic_question_answers_path do |f| %>
   <% if @question.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>

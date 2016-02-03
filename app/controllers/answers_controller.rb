@@ -5,7 +5,6 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
-
   end
 
   def new
@@ -15,11 +14,17 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
+    @answers = @question.answers.all
     @answer = @question.answers.build(answer_params)
-      if @answer.save
-        redirect_to topic_question_answers_path, notice: 'Success'
-      else
-        redirect_to topic_question_answers_path, notice: 'Fail'
+    respond_to do |format|
+        if @answer.save
+          format.html {redirect_to topic_question_answers_path, notice: 'Success'}
+          format.js {}
+          format.json { render json: @answer, status: :created, location: @answer}
+        else
+          redirect_to topic_question_answers_path, notice: 'Fail'
+          format.json { render json: @answer.errors, status: :unprocessable_entity}
+        end
       end
   end
 

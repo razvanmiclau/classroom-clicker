@@ -74,7 +74,8 @@ class QuestionsController < ApplicationController
     def set_question_type
       @question_types = [
         [ "Open Question", "Open Question"],
-        [ "Multiple-choice", "Multiple-choice"]
+        [ "Multiple-choice", "Multiple-choice"],
+        [ "True/False", "True/False"]
       ]
     end
 

@@ -6,9 +6,13 @@
   <%= render 'answer' %>
 </div>
 <hr>
-<% if @question.choices.any? %>
+<% if @question.choices.any? || @question.kind == "True/False" %>
   <div class="row">
-      <%= render 'choices_form' %>
+      <% if @question.kind != "True/False" %>
+        <%= render 'choices_form' %>
+      <% else %>
+        <%= render 'binary_choice_form' %>
+      <% end %>
   </div>
 <% else %>
   <div class="row">
