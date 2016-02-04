@@ -28,6 +28,10 @@ class AnswersController < ApplicationController
       end
   end
 
+  def data
+    render :json => Question.find(params[:question_id]).answers
+  end
+
   private
     def answer_params
       params.require(:answer).permit(:value, :question_id)

@@ -17,6 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
+  get 'questions/:question_id/data' => 'answers#data'
+  post 'question/:question_id/create' => 'answers#create'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

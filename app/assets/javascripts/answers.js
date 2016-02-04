@@ -13,4 +13,23 @@ $(document).ready(function(){
     console.log(button_value);
     $('#binary-choice-form input[type=text]').val(button_value);
   });
-})
+});
+
+var data = [];
+function get_data(){
+  $.get('/questions/' + question_id + "/data", function(dt){
+    data = dt;
+    draw_answers(data);
+  });
+}
+
+function draw_answers(data){
+  $('#lect-answers').children().remove();
+    for (var i = 0; i < data.length; i++) {
+      var stringVal = "";
+      stringVal += "<p class=\"bg-info answer-line\"><strong>Anonymus: <\/strong>"+data[i].value+"</p>";
+      $('#lect-answers').append(stringVal);
+    }
+}
+
+setInterval(get_data,2000);

@@ -1,10 +1,14 @@
+<script>
+  var question_id = "<%= j @question.id.to_s %>";
+</script>
+
 <div class="jumbotron">
   <h1 class="text-center"><%= @question.title %></h1>
 </div>
 
 <div class="row">
 <% if @answers.any? %>
-  <div class="col-sm-12">
+  <div id="lect-answers" class="col-sm-12">
     <% @answers.each do |answer| %>
       <p class="bg-info answer-line"><strong>Anonymus: </strong><%= answer.value %> <small><%= time_ago_in_words(answer.created_at) %> ago</small></p>
     <% end %>
@@ -20,5 +24,6 @@
   <div class="col-sm-12">
     <%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer), class: 'btn btn-primary' %>
     <%= link_to 'Back', @topic, class: 'btn btn-default' %>
+
   </div>
 </div>
