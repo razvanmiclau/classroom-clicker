@@ -20,6 +20,8 @@ GEM
       erubis (~> 2.7.0)
       rails-dom-testing (~> 1.0, >= 1.0.5)
       rails-html-sanitizer (~> 1.0, >= 1.0.2)
+    active_median (0.1.2)
+      activerecord
     activejob (4.2.4)
       activesupport (= 4.2.4)
       globalid (>= 0.3.0)
@@ -53,6 +55,7 @@ GEM
     bootstrap_form (2.3.0)
     builder (3.2.2)
     byebug (8.2.1)
+    chartkick (1.4.1)
     cocoon (1.2.6)
     coderay (1.1.0)
     coffee-rails (4.1.0)
@@ -74,6 +77,8 @@ GEM
     execjs (2.6.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    groupdate (2.5.1)
+      activesupport (>= 3)
     hirb (0.7.3)
     i18n (0.7.0)
     jbuilder (2.3.2)
@@ -94,8 +99,6 @@ GEM
     mime-types (2.99)
     mini_portile (0.6.2)
     minitest (5.8.3)
-    momentjs-rails (2.11.0)
-      railties (>= 3.1)
     multi_json (1.11.2)
     nokogiri (1.6.6.4-x64-mingw32)
       mini_portile (~> 0.6.0)
@@ -179,18 +182,20 @@ PLATFORMS
   x64-mingw32
 
 DEPENDENCIES
+  active_median
   bcrypt (~> 3.1.7)
   better_errors
   bootstrap-sass
   bootstrap_form
   byebug
+  chartkick
   cocoon
   devise
+  groupdate
   hirb
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
-  momentjs-rails
   pg
   rails (= 4.2.4)
   rails_12factor

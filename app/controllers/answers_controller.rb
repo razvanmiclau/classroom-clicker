@@ -32,6 +32,10 @@ class AnswersController < ApplicationController
     render :json => Question.find(params[:question_id]).answers
   end
 
+  def total
+    render :json => Question.find(params[:question_id]).answers.group(:value).count
+  end
+
   private
     def answer_params
       params.require(:answer).permit(:value, :question_id)

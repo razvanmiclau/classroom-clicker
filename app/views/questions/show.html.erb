@@ -1,6 +1,8 @@
 <script>
   var question_id = "<%= j @question.id.to_s %>";
+  var answers_rows = "<%= j @answers.group(:value).count.to_s %>";
 </script>
+
 
 <div class="jumbotron">
   <h1 class="text-center"><%= @question.title %></h1>
@@ -8,7 +10,7 @@
 
 <div class="row">
 <% if @answers.any? %>
-  <div id="lect-answers" class="col-sm-12">
+  <div id="lect-answers" class="col-sm-6">
     <% @answers.each do |answer| %>
       <p class="bg-info answer-line"><strong>Anonymus: </strong><%= answer.value %> <small><%= time_ago_in_words(answer.created_at) %> ago</small></p>
     <% end %>
@@ -18,6 +20,11 @@
     <h3>No answers. please share the answers link to students</h3>
   </div>
 <% end %>
+  <div class="sidebar col-sm-6">
+    <div id="chart">
+      
+    </div>
+  </div>
 </div>
 <hr>
 <div class="row">
