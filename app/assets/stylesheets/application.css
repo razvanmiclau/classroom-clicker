@@ -11,6 +11,7 @@
  * file per style scope.
  *
  *= require rails_bootstrap_forms
+ *= require jqcloud
  *= require_tree .
  *= require_self
 
@@ -23,6 +24,7 @@
   */
 
  /* Toggle Styles */
+
 
  #wrapper {
      padding-left: 0;

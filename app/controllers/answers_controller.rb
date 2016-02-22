@@ -36,6 +36,17 @@ class AnswersController < ApplicationController
     render :json => Question.find(params[:question_id]).answers.group(:value).count
   end
 
+  def words
+    @question = Question.find(params[:question_id])
+    valuesHash = @question.answers.all
+    wordsArray = Array.new
+      valuesHash.each do |key|
+        wordsArray.push(key['value'].split()) #[[1,2,3],[4,5,6]]
+      end
+    @wordCloudArray = wordsArray.flatten #[1,2,3,4,5,6]
+    render :json => @wordCloudArray
+  end
+
   private
     def answer_params
       params.require(:answer).permit(:value, :question_id)
