@@ -4,11 +4,6 @@
 var data = [];
 var colours = ['red', 'green', 'orange', 'blue', 'light-blue'];
 
-// Load the Visualization API and the piechart package.
-google.load('visualization', '1.0', {'packages':['corechart']});
-// Set a callback to run when the Google Visualization API is loaded.
-google.setOnLoadCallback(drawChart);
-
 $(document).ready(function(){
   $('#choices-form input[type=submit]').on('click', function(){
     var button_value = $(this).val();
@@ -39,13 +34,20 @@ function pickRandom(){
   return Math.round(Math.random());
 }
 
+function randomColor(){
+  var letters = '0123456789ABCDEF'.split('');
+    var color = '#';
+    for (var i = 0; i < 6; i++ ) {
+        color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+};
+
 function get_data(){
   $.get('/questions/' + question_id + '/data', function(dt){
     data = dt;
     //draw_answers(data);
-    $(window).resize(function(){
-      drawChart();
-    });
+    drawChart();
     drawWordCloud();
   });
 }
@@ -76,101 +78,112 @@ function drawChart() {
   }).responseText;
 
   var obj = $.parseJSON(jsonData);
-  var dataArray = [["Answer", "Votes"]];
+  console.log(obj);
+  var labelsArray = [];
+  var dataArray = [];
+
     for(var key in obj){
       if(obj.hasOwnProperty(key)){
-        var item = [key, obj[key]];
-        dataArray.push(item);
+        labelsArray.push(key);
+        dataArray.push(obj[key]);
       }
-    }
-  var dataTable = google.visualization.arrayToDataTable(dataArray);
+    };
 
-  // Set chart options
-  var barOptions = {
-    focusTarget: 'category',
-		backgroundColor: 'transparent',
-		colors: ['cornflowerblue', 'tomato'],
-		fontName: 'Open Sans',
-		chartArea: {
-			left: 50,
-			top: 10,
-			width: '100%',
-			height: '70%'
-		},
-		bar: {
-			groupWidth: '80%'
-		},
-		hAxis: {
-			textStyle: {
-				fontSize: 11
-			}
-		},
-		vAxis: {
-			minValue: 0,
-			maxValue: 1500,
-			baselineColor: '#DDD',
-			gridlines: {
-				color: '#DDD',
-				count: 4
-			},
-			textStyle: {
-				fontSize: 11
-			}
-		},
-		legend: {
-			position: 'bottom',
-			textStyle: {
-				fontSize: 12
-			}
-		},
-		animation: {
-			duration: 1200,
-			easing: 'out',
-			startup: true
-		}
+  var data = {
+    labels: labelsArray,
+    datasets: [
+        {
+            fillColor: "rgba(151,187,205,0.5)",
+            strokeColor: "rgba(151,187,205,0.8)",
+            highlightFill: "rgba(151,187,205,0.75)",
+            highlightStroke: "rgba(151,187,205,1)",
+            data: dataArray
+        }
+    ]
+  };
+
+  var pieData = [];
+    for(var key in obj){
+      if(obj.hasOwnProperty(key)){
+        var objectData = {
+          value: obj[key],
+          color:"#F7464A",
+          highlight: "#FF5A5E",
+          label: key
+        };
+        pieData.push(objectData);
+      }
+    };
+
+  var ctx = document.getElementById('barChart').getContext("2d");
+  var ctxPie = document.getElementById('pieChart').getContext("2d");
+
+  var options = {
+    //Boolean - Whether the scale should start at zero, or an order of magnitude down from the lowest value
+    scaleBeginAtZero : true,
+
+    //Boolean - Whether grid lines are shown across the chart
+    scaleShowGridLines : true,
+
+    //String - Colour of the grid lines
+    scaleGridLineColor : "rgba(0,0,0,.05)",
+
+    //Number - Width of the grid lines
+    scaleGridLineWidth : 1,
+
+    //Boolean - Whether to show horizontal lines (except X axis)
+    scaleShowHorizontalLines: true,
+
+    //Boolean - Whether to show vertical lines (except Y axis)
+    scaleShowVerticalLines: true,
+
+    //Boolean - If there is a stroke on each bar
+    barShowStroke : true,
+
+    //Number - Pixel width of the bar stroke
+    barStrokeWidth : 2,
+
+    //Number - Spacing between each of the X value sets
+    barValueSpacing : 5,
+
+    //Number - Spacing between data sets within X values
+    barDatasetSpacing : 1,
+
+    responsive: true,
+    animation: false
   };
 
   var pieOptions = {
-    width: '100%',
-    height: '350',
-    backgroundColor: 'transparent',
-		pieHole: 0.4,
-		colors: ["cornflowerblue",
-			"olivedrab",
-			"orange",
-			"tomato",
-			"crimson",
-			"purple",
-			"turquoise",
-			"forestgreen",
-			"navy",
-			"gray"
-		],
-		pieSliceText: 'value',
-		tooltip: {
-			text: 'percentage'
-		},
-		fontName: 'Roboto',
-		chartArea: {
-			width: '55%',
-			height: '250',
-      left: 0,
-      top: 20
-		},
-		legend: {
-			textStyle: {
-				fontSize: 16
-			},
-      position: 'bottom'
-		}
+    //Boolean - Whether we should show a stroke on each segment
+        segmentShowStroke : true,
 
+        //String - The colour of each segment stroke
+        segmentStrokeColor : "#fff",
+
+        //Number - The width of each segment stroke
+        segmentStrokeWidth : 2,
+
+        //Number - The percentage of the chart that we cut out of the middle
+        percentageInnerCutout : 50, // This is 0 for Pie charts
+
+        //Number - Amount of animation steps
+        animationSteps : 100,
+
+        //String - Animation easing effect
+        animationEasing : "easeOutBounce",
+
+        //Boolean - Whether we animate the rotation of the Doughnut
+        animateRotate : true,
+
+        //Boolean - Whether we animate scaling the Doughnut from the centre
+        animateScale : false,
+        responsive: true,
+        animation: false
   };
 
-  // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.BarChart(document.getElementById('bar-chart'));
-  var pie = new google.visualization.PieChart(document.getElementById('pie-chart'));
-  chart.draw(dataTable, barOptions);
-  pie.draw(dataTable, pieOptions);
+  var barChart = new Chart(ctx).Bar(data, options);
+  var pieChart = new Chart(ctxPie).Pie(pieData, pieOptions);
+
 }
 
 function createObjectArray(wordsArray){

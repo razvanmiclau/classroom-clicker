@@ -1,5 +1,6 @@
 <div class="tab-content">
 
+<!-- CARDS -->
   <div id="tab-questions" class="col-md-12 tab-pane">
     <div class="card">
       <div class="header">
@@ -13,7 +14,8 @@
     </div><!-- end card -->
   </div>
 
-  <div id="tab-replies" class="col-md-12 tab-pane active">
+<!-- WORD CLOUD -->
+  <div id="tab-replies" class="col-md-12 tab-pane">
     <div class="card">
       <div class="content">
         <div id="cloud"></div>
@@ -21,7 +23,8 @@
     </div><!-- end card -->
   </div>
 
-  <div id="tab-stats" class="col-md-12 tab-pane">
+<!-- BAR CHART -->
+  <div id="tab-stats" class="col-md-12 tab-pane active">
     <div class="card">
       <div class="header">
         <h4 class="title"><%= @question.title %></h4>
@@ -29,11 +32,13 @@
       </div>
 
       <div class="content">
-        <div id="bar-chart" class="chart"></div>
+        <!-- <div id="bar-chart" class="chart"></div> -->
+        <canvas id="barChart" width="800" height="200"></canvas>
       </div>
     </div><!-- end card -->
   </div>
 
+<!-- PIE CHART -->
   <div id="tab-pie"  class="col-md-12 tab-pane">
     <div class="card">
       <div class="header">
@@ -42,7 +47,9 @@
       </div>
 
       <div class="content">
-        <div id="pie-chart" class="chart"></div>
+        <!-- <div id="pie-chart" class="chart"></div> -->
+        <canvas id="pieChart"></canvas>
+
       </div>
     </div><!-- end card -->
   </div>
