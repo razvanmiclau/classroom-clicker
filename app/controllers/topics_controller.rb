@@ -1,11 +1,13 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
   before_action :is_teacher!, except: [ :index ]
+  respond_to :html, :js
 
   # GET /topics
   # GET /topics.json
   def index
     @topics = current_user.topics
+    @topics_count = current_user.topics.count
   end
 
   # GET /topics/1

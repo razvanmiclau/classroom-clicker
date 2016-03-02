@@ -1,29 +1,81 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="header">
+            <h4 class="title">Edit Profile</h4>
+          </div>
 
-<%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
-  <%= devise_error_messages! %>
+          <div class="content">
+            <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+              <%= devise_error_messages! %>
 
-    <%= f.text_field :first_name, autofocus: true %>
-    <%= f.text_field :last_name, autofocus: true %>
-    <%= f.email_field :email, autofocus: true %>
+                <div class="row">
+                  <div class="col-md-6">
+                    <%= f.text_field :first_name, autofocus: true %>
+                  </div>
+                  <div class="col-md-6">
+                    <%= f.text_field :last_name, autofocus: true %>
+                  </div>
+                </div>
+
+                <%= f.email_field :email, autofocus: true %>
+
+              <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+                <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+              <% end %>
+
+                <%= f.password_field :password, autocomplete: "off" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
+
+                <%= f.password_field :current_password, autocomplete: "off" %>
+
+              <div class="actions">
+                <%= f.submit "Update", class: 'btn btn-primary' %>
+              </div>
+            <% end %>
+          </div><!-- end content -->
+        </div><!-- end card -->
+      </div><!-- end col-md-8 -->
+
+      <div class="col-md-4">
+        <div class="card card-user">
+          <div class="image">
+            <img alt="..." src="https://ununsplash.imgix.net/photo-1431578500526-4d9613015464?fit=crop&amp;fm=jpg&amp;h=300&amp;q=75&amp;w=400">
+          </div>
+          <div class="content">
+            <div class="author">
+              <%= image_tag display_avatar(128), class: 'avatar' %>
+              <h4 class="title"><%= display_fullname %><br>
+                <small><%= display_username %></small>
+              </h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div><!-- end row -->
 
 
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
-  <% end %>
-
-    <%= f.password_field :password, autocomplete: "off" %>
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-
-    <%= f.password_field :current_password, autocomplete: "off" %>
-
-  <div class="actions">
-    <%= f.submit "Update", class: 'btn btn-primary' %>
   </div>
-<% end %>
-<hr>
-<h3>Cancel my account</h3>
+</div>
 
-<%= button_to "Delete account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
-<br>
-<%= link_to "Back", :back %>
+<div class="content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="content">
+        <div class="col-md-4">
+          <div class="card">
+            <div class="header">
+              <h4 class="title">Delete Account</h4>
+            </div>
+            <div class="content">
+              <%= button_to "Delete account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
+              <%= link_to "Back", :back, class: 'btn btn-simple btn-xs' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

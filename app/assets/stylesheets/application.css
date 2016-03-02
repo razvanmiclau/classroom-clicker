@@ -12,6 +12,7 @@
  *
  *= require rails_bootstrap_forms
  *= require jqcloud
+ *= require light-bootstrap-dashboard
  *= require_tree .
  *= require_self
 
@@ -25,49 +26,6 @@
 
  /* Toggle Styles */
 
-
- #wrapper {
-     padding-left: 0;
-     -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-     -o-transition: all 0.5s ease;
-     transition: all 0.5s ease;
- }
-
- #wrapper.toggled {
-     padding-left: 250px;
- }
-
- #sidebar-wrapper {
-     z-index: 1000;
-     position: fixed;
-     left: 250px;
-     width: 0;
-     height: 100%;
-     margin-left: -250px;
-     overflow-y: auto;
-     background: #34495e;
-     -webkit-transition: all 0.5s ease;
-     -moz-transition: all 0.5s ease;
-     -o-transition: all 0.5s ease;
-     transition: all 0.5s ease;
- }
-
- #wrapper.toggled #sidebar-wrapper {
-     width: 250px;
- }
-
- #page-content-wrapper {
-     width: 100%;
-     position: absolute;
-     padding: 15px;
- }
-
- #wrapper.toggled #page-content-wrapper {
-     position: absolute;
-     margin-right: -250px;
- }
-
  /* Notification Styles */
  .notice-container{
    position: absolute;
@@ -75,7 +33,7 @@
    right:0;
    width:250px;
    z-index: 9999;
-   background: rgba(46, 204, 113, 0.5)
+   background: rgba(46, 204, 113, 0.9)
  }
 
  .notice-container p {
@@ -87,85 +45,54 @@
    color: #fff;
  }
 
- /* Sidebar Styles */
-
- .sidebar-nav {
-     position: absolute;
-     top: 0;
-     width: 250px;
-     margin: 0;
-     padding: 0;
-     list-style: none;
+ img.avatar{
+   border:5px solid #fff;
+   position: relative;
+   overflow: hidden;
+   border-radius: 50%;
+   border-color: #ccc;
+   margin-right:5px;
  }
 
- .sidebar-nav li {
-     text-indent: 20px;
-     line-height: 40px;
- }
+.navbar-brand{
+  line-height: 40px;
+}
 
- .sidebar-nav li a {
-     display: block;
-     text-decoration: none;
-     color: #ddd;
- }
+.navbar-left{
+  margin-top:12px;
+}
 
- .sidebar-nav li a:hover {
-     text-decoration: none;
-     color: #fff;
-     background: rgba(255,255,255,0.2);
- }
+.red{
+  color :#fff;
+  background-color: #FB404B;
+  opacity: 1
+}
 
- .sidebar-nav li a:active,
- .sidebar-nav li a:focus {
-     text-decoration: none;
- }
+.orange{
+  color :#fff;
+  background-color: #FFA534;
+  opacity: 1
+}
 
- .sidebar-nav > .sidebar-brand {
-     height: 65px;
-     font-size: 18px;
-     line-height: 60px;
-     background: #2c3e50;
-     color: #ddd;
- }
+.green{
+  color :#fff;
+  background-color: #87CB16;
+  opacity: 1
+}
 
- .sidebar-nav > .sidebar-brand a {
-     color: #ddd;
- }
+.light-blue{
+  color :#fff;
+  background-color: #23CCEF;
+  opacity: 1
+}
 
- .sidebar-nav > .sidebar-brand a:hover {
-     color: #fff;
-     background: none;
- }
+.blue{
+  color :#fff;
+  background-color: #447DF7;
+  opacity: 1
+}
 
- .answer-line{
-   padding:1rem;
- }
-
-
- @media(min-width:768px) {
-     #wrapper {
-         padding-left: 250px;
-     }
-
-     #wrapper.toggled {
-         padding-left: 0;
-     }
-
-     #sidebar-wrapper {
-         width: 250px;
-     }
-
-     #wrapper.toggled #sidebar-wrapper {
-         width: 0;
-     }
-
-     #page-content-wrapper {
-         padding: 20px;
-         position: relative;
-     }
-
-     #wrapper.toggled #page-content-wrapper {
-         position: relative;
-         margin-right: 0;
-     }
- }
+#cloud{
+  width:100%;
+  border: 1px solid #ccc;
+}

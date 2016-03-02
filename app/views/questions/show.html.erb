@@ -2,75 +2,35 @@
   var question_id = "<%= j @question.id.to_s %>";
 </script>
 
-<div class="jumbotron">
-  <h1 class="text-center"><%= @question.title %></h1>
-</div>
+<div class="screen">
 
-<div>
-
-  <!-- Nav tabs -->
-  <ul class="nav nav-tabs">
-  <li class="active">
-    <%= link_to "#tab-questions", data: { toggle: "tab" } do %>
-      <span class="glyphicon glyphicon-th-list"></span>
-      Cards View
-    <% end %>
-  </li>
-  <li>
-    <%= link_to "#tab-replies", data: { toggle: "tab" } do %>
-      <span class="glyphicon glyphicon-list-alt"></span>
-      Word Cloud
-    <% end %>
-  </li>
-  <li>
-    <%= link_to "#tab-stats", data: { toggle: "tab" } do %>
-      <span class="glyphicon glyphicon-stats"></span>
-      Bar Chart
-    <% end %>
-  </li>
-  <li>
-    <%= link_to "#tab-pie", data: { toggle: "tab" } do %>
-      <span class="glyphicon glyphicon-pie"></span>
-      Pie Chart
-    <% end %>
-  </li>
-</ul>
-<div class="tab-content">
-  <div class="tab-pane active" id="tab-questions">
-    <%= render 'answerBox' %>
-  </div>
-  <div class="tab-pane" id="tab-replies">
-    <div class="row">
-      <div class="container">
-        <div id="cloud"></div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="content">
+          <div class="jumbotron">
+            <h1 class="text-center"><%= @question.title %></h1>
+          </div>
+        </div><!-- end header -->
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="tab-stats">
-    <div class="row">
-      <div class="container">
-        <div id="chart"></div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <%= render 'questions/partials/sections' %>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="content">
+            <%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer), class: 'btn btn-primary' %>
+            <%= link_to 'Back', @topic, class: 'btn btn-default' %>
+        </div>
       </div>
     </div>
   </div>
-  <div class="tab-pane" id="tab-pie">
-    <div class="row">
-      <div class="container">
-        <div id="pie"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
-
-</div>
-
-
-<hr>
-<div class="row">
-  <div class="col-sm-12">
-    <%= link_to 'Answer', topic_question_answers_path(@topic, @question, @answer), class: 'btn btn-primary' %>
-    <%= link_to 'Back', @topic, class: 'btn btn-default' %>
-
-  </div>
-</div>
+</div><!-- end screen -->

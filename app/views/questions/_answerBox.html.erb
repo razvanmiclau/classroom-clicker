@@ -1,12 +1,11 @@
-
 <div class="row">
   <% if @answers.any? %>
     <div id="lect-answers">
       <% @answers.each do |answer| %>
       <div class="col-sm-3">
-        <div class="panel">
-          <div class="panel-body">
-            <h4><%= answer.value %></h4>
+        <div class="card answer-card">
+          <div class="content">
+            <h3><%= answer.value %></h3>
           </div>
         </div>
       </div>

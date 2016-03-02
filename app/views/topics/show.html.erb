@@ -1,35 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<div class="page-header">
-  <h1><%= @topic.title %></h1>
-</div>
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="header">
+        <h4 class="title"><%= @topic.title %></h1><br>
+          <p class="category">
+            <%= link_to 'Add Question', new_topic_question_path(@topic), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Edit', edit_topic_path(@topic), class: 'btn btn-warning btn-sm' %>
+            <%= link_to 'Back', topics_path, class: 'btn btn-default btn-sm' %>
+          </p>
+      </div>
 
-  <% if @topic.questions.any? %>
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Question</th>
-          <th>Kind</th>
-          <th colspan="3"></th>
-        </tr>
-      </thead>
-
-      <tbody>
-      <% @topic.questions.each do |q| %>
-        <tr>
-          <td><%= q.title %></td>
-          <td><%= q.kind %></td>
-          <td><%= link_to 'Show', [@topic, q], class: 'btn btn-success btn-sm' %></td>
-          <td><%= link_to 'Edit', edit_topic_question_path(@topic, q), class: 'btn btn-warning btn-sm' %></td>
-          <td><%= link_to 'Destroy', [@topic, q], class: 'btn btn-danger btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+      <% if @topic.questions.any? %>
+        <div class="content">
+          <%= render 'topics/partials/questions_table' %>
+        </div>
+      <% else %>
+          <div class="content">
+            <h4>No Questions. Please add a new question!</h4>
+          </div>
       <% end %>
-    </tbody>
-  <% else %>
-    <h4>No Questions. Please add a new question!</h4>
-  <% end %>
-    </table>
-<hr>
-<%= link_to 'Add Question', new_topic_question_path(@topic), class: 'btn btn-primary btn-sm' %>
-<%= link_to 'Edit', edit_topic_path(@topic), class: 'btn btn-warning btn-sm' %>
-<%= link_to 'Back', topics_path, class: 'btn btn-default btn-sm' %>
+
+    </div><!-- end card -->
+  </div><!-- end col-md-12 -->
+</div><!-- end row -->

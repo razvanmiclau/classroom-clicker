@@ -1,21 +1,36 @@
 <!-- Sidebar Navigation -->
 
-  <div id="sidebar-wrapper">
-    <ul class="sidebar-nav">
-      <% if current_user %>
-        <li class="sidebar-brand">
-          Welcome <%= current_user.first_name %>
-        </li>
-        <li><%= link_to 'Dashboard', root_path %></li>
-        <li><%= link_to 'Edit Account', edit_user_registration_path %></li>
-        <li><%= link_to('Logout', destroy_user_session_path, :method => :delete) %></li>
+<div class="sidebar" data-color="blue" data-image="https://unsplash.it/354/795/?random">
 
-      <% else %>
-          <li class="sidebar-brand">
-            Classroom Clicker
-          </li>
-      <% end %>
-      </ul>
+<!--
+
+    Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
+    Tip 2: you can also add an image using data-image tag
+
+-->
+
+  <div class="sidebar-wrapper">
+        <div class="logo">
+            <%= link_to 'Clickr', root_path, class: 'simple-text' %>
+        </div>
+
+        <ul class="nav">
+            <li class="active">
+                <%= link_to(root_path) do %>
+                  <i class="glyphicon glyphicon-home"></i>
+                  <p>Dashboard</p>
+                <% end %>
+
+            </li>
+            <li>
+              <%= link_to(edit_user_registration_path) do %>
+                <i class="glyphicon glyphicon-user"></i>
+                <p>User Profile</p>
+              <% end %>
+            </li>
+
+        </ul>
   </div>
+</div>
 
 <!-- /#sidebar-wrapper -->

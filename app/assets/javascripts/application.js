@@ -14,15 +14,9 @@
 //= require bootstrap-sprockets
 //= require jquery_ujs
 //= require jqcloud
+//= require light-bootstrap-dashboard
+//= require screenfull
 //= require cocoon
 //= require turbolinks
 //= require jquery.turbolinks
 //= require_tree .
-
-$(document).ready(function() {
-  // menu-toggle
-  $("#menu-toggle").click(function(e) {
-      e.preventDefault();
-      $("#wrapper").toggleClass("toggled");
-  });
-});
