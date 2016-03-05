@@ -2,11 +2,8 @@
 // All this logic will automatically be available in application.js.
 
 var data = [];
-
-// Load the Visualization API and the piechart package.
-google.load('visualization', '1.0', {'packages':['corechart']});
-// Set a callback to run when the Google Visualization API is loaded.
-google.setOnLoadCallback(drawChart);
+var chart;
+var answers = [];
 
 $(document).ready(function(){
   $('#choices-form input[type=submit]').on('click', function(){
@@ -20,17 +17,103 @@ $(document).ready(function(){
     console.log(button_value);
     $('#binary-choice-form input[type=text]').val(button_value);
   });
+
+  get_data();
+  drawColumnChart();
+  drawPieChart();
+
 });
+
+function drawColumnChart() {
+  chart = new Highcharts.Chart({
+    chart: {
+      renderTo : 'bar-chart',
+      type: 'column',
+      events: {
+        load: function() {
+          chart = this;
+          requestData();
+        }
+      }
+    },
+    title: {
+      text: null
+    },
+    xAxis: {
+      answers: answers
+    },
+    yAxis: {
+      title: {
+        text: null
+      }
+    },
+    series: [{
+      name: 'Votes',
+      data: []
+    }]
+  });
+}
+
+function drawPieChart() {
+  chart = new Highcharts.Chart({
+    chart: {
+      renderTo : 'pie-chart',
+      type: 'pie',
+      events: {
+        load: function() {
+          chart = this;
+          requestDataPie();
+        }
+      }
+    },
+    plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                showInLegend: true
+            }
+        },
+
+    title: {
+      text: null
+    },
+    xAxis: {
+      answers: answers
+    },
+    yAxis: {
+      title: {
+        text: null
+      }
+    },
+    series: [{
+      name: 'Votes',
+      data: []
+    }]
+  });
+}
 
 
 
 function get_data(){
-  $.get('/questions/' + question_id + '/data', function(dt){
-    data = dt;
-    draw_answers(data);
-    drawChart();
-    drawWordCloud();
-  });
+  $.ajax({
+    url: '/questions/' + question_id + '/data',
+    dataType: 'json',
+    async: false,
+    success: function(dt){
+      data = dt;
+      draw_answers(data);
+      drawWordCloud();
+      setTimeout(get_data, 1000);
+    },
+    cache: false
+  })
 }
 
 function draw_answers(data){
@@ -49,38 +132,67 @@ function draw_answers(data){
     }
 }
 
-function drawChart() {
-
-  // Create the data table.
-  var jsonData = $.ajax({
+function requestData() {
+  $.ajax({
     url: '/questions/' + question_id + '/total',
     dataType: 'json',
-    async: false
-  }).responseText;
-
-  var obj = $.parseJSON(jsonData);
-  var dataArray = [["Answer", "Votes"]];
-    for(var key in obj){
-      if(obj.hasOwnProperty(key)){
-        var item = [key, obj[key]];
-        dataArray.push(item);
-      }
-    }
-  var dataTable = google.visualization.arrayToDataTable(dataArray);
-
-  // Set chart options
-  var options = {
-    'width':800,
-    'height':700,
-    'is3D': true
-  };
-
-  // Instantiate and draw our chart, passing in some options.
-  var chart = new google.visualization.BarChart(document.getElementById('chart'));
-  var pie = new google.visualization.PieChart(document.getElementById('pie'));
-  chart.draw(dataTable, options);
-  pie.draw(dataTable, options);
+    async: false,
+    success: function(data) {
+      var answers = [];
+      var answerValues = [];
+      $.each(data, function(i,e) {
+        answers.push(i);
+        answerValues.push(parseInt(e));
+      });
+      // chart.series.addPoint([categories, seriesData], true, true);
+      chart.xAxis[0].setCategories(answers);
+      chart.series[0].setData(answerValues);
+      setTimeout(requestData, 2000);
+    },
+    cache: false
+  });
 }
+
+function requestDataPie() {
+  $.ajax({
+    url: '/questions/' + question_id + '/total',
+    dataType: 'json',
+    async: false,
+    success: function(data) {
+      var dataObjectArray = [];
+      $.each(data, function(i,e) {
+        dataobj = {
+          name: i,
+          votes: e
+        }
+        dataObjectArray.push(dataobj);
+      });
+      // chart.series.addPoint([categories, seriesData], true, true);
+      chart.series[0].setData(dataObjectArray);
+      setTimeout(requestDataPie, 1000);
+    },
+    cache: false
+  });
+}
+
+// function drawChart() {
+//
+//   // Create the data table.
+//   var jsonData = $.ajax({
+//     url: '/questions/' + question_id + '/total',
+//     dataType: 'json',
+//     async: false
+//   }).responseText;
+//
+//   var obj = $.parseJSON(jsonData);
+//   var dataArray = [["Answer", "Votes"]];
+//     for(var key in obj){
+//       if(obj.hasOwnProperty(key)){
+//         var item = [key, obj[key]];
+//         dataArray.push(item);
+//       }
+//     }
+// }
 
 function createObjectArray(wordsArray){
   var objectArray = [];
@@ -131,5 +243,3 @@ function drawWordCloud() {
   $('#cloud').jQCloud('update', word_array);
 
 }
-
-setInterval(get_data,2000);

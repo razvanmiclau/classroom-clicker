@@ -17,9 +17,9 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'questions/:question_id/data' => 'answers#data'
-  get 'questions/:question_id/total' => 'answers#total'
-  get 'questions/:question_id/words' => 'answers#words'
+  get 'questions/:question_id/data' => 'answers#data', as: :data
+  get 'questions/:question_id/total' => 'answers#total', as: :total
+  get 'questions/:question_id/words' => 'answers#words', as: :words
   post 'question/:question_id/create' => 'answers#create'
 
   # The priority is based upon order of creation: first created -> highest priority.
