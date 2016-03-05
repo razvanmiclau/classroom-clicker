@@ -11,6 +11,7 @@ gem 'cocoon'
 gem 'chartkick'
 gem 'groupdate'
 gem 'active_median'
+gem 'friendly_id', '~> 5.1.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library

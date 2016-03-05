@@ -1,19 +1,17 @@
 class AnswersController < ApplicationController
+  before_action :set_question
   respond_to :html, :js
 
   def index
-    @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
   end
 
   def new
-    @question = Question.find(params[:question_id])
     @answer = @question.answers.build
   end
 
   def create
-    @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build(answer_params)
     respond_to do |format|
@@ -29,15 +27,14 @@ class AnswersController < ApplicationController
   end
 
   def data
-    render :json => Question.find(params[:question_id]).answers
+    render :json => @question.answers
   end
 
   def total
-    render :json => Question.find(params[:question_id]).answers.group(:value).count
+    render :json => @question.answers.group(:value).count
   end
 
   def words
-    @question = Question.find(params[:question_id])
     valuesHash = @question.answers.all
     wordsArray = Array.new
       valuesHash.each do |key|
@@ -48,7 +45,12 @@ class AnswersController < ApplicationController
   end
 
   private
+    def set_question
+      @question = Question.friendly.find(params[:question_id])
+    end
+
     def answer_params
       params.require(:answer).permit(:value, :question_id)
     end
+
 end

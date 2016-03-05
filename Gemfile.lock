@@ -75,6 +75,8 @@ GEM
       warden (~> 1.2.3)
     erubis (2.7.0)
     execjs (2.6.0)
+    friendly_id (5.1.0)
+      activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     groupdate (2.5.1)
@@ -191,6 +193,7 @@ DEPENDENCIES
   chartkick
   cocoon
   devise
+  friendly_id (~> 5.1.0)
   groupdate
   hirb
   jbuilder (~> 2.0)
