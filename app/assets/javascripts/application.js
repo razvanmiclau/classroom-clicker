@@ -13,7 +13,6 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
-//= require chart.min
 //= require jqcloud
 //= require light-bootstrap-dashboard
 //= require screenfull
