@@ -14,6 +14,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @answers = @question.answers.all
+    @tinyURL = TinyurlShortener.shorten(topic_question_answers_path(@topic, @question, @answer))
   end
 
   # GET /questions/new

@@ -11,6 +11,7 @@ gem 'cocoon'
 gem 'groupdate'
 gem 'chartkick'
 gem 'friendly_id'
+gem 'tinyurl_shortener'
 gem 'active_median'
 
 # Use Uglifier as compressor for JavaScript assets
