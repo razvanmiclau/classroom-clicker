@@ -2,6 +2,8 @@
   var question_id = "<%= j @question.id.to_s %>";
 </script>
 
+<%= javascript_include_tag 'answers' %>
+
 <div class="screen">
 
   <div class="row">
@@ -18,12 +20,8 @@
   </div>
 
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-12">
       <%= render 'questions/partials/sections' %>
-    </div>
-
-    <div class="col-md-2">
-      <button id="startVote" class="btn btn-sm btn-primary" type="button">Start Voting</button>
     </div>
   </div>
 

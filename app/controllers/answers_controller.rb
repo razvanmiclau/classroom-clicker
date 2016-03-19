@@ -29,22 +29,17 @@ class AnswersController < ApplicationController
   end
 
   def data
-    render :json => Question.find(params[:question_id]).answers
-  end
-
-  def total
-    render :json => Question.find(params[:question_id]).answers.group(:value).count
-  end
-
-  def words
+    @data = Question.find(params[:question_id]).answers
+    @total = Question.where(:uuid => params[:question_id]).first.answers.group(:value).count
     @question = Question.find(params[:question_id])
-    valuesHash = @question.answers.all
-    wordsArray = Array.new
-      valuesHash.each do |key|
-        wordsArray.push(key['value'].split()) #[[1,2,3],[4,5,6]]
-      end
+      valuesHash = @question.answers.all
+      wordsArray = Array.new
+        valuesHash.each do |key|
+          wordsArray.push(key['value'].split()) #[[1,2,3],[4,5,6]]
+        end
     @wordCloudArray = wordsArray.flatten #[1,2,3,4,5,6]
-    render :json => @wordCloudArray
+
+    render :json => {:answers => @data, :total => @total, :words => @wordCloudArray}
   end
 
   private
