@@ -6,7 +6,7 @@
       <div class="header">
         <h4 class="title"><%= @topic.title %></h1><br>
           <p class="category">
-            <%= link_to 'Add Question', new_topic_question_path(@topic), class: 'btn btn-primary btn-sm' %>
+            <%= link_to 'Add Question', new_topic_question_path(@topic), class: 'btn btn-sm btn-primary' %>
             <%= link_to 'Edit', edit_topic_path(@topic), class: 'btn btn-warning btn-sm' %>
             <%= link_to 'Back', topics_path, class: 'btn btn-default btn-sm' %>
           </p>
@@ -17,9 +17,9 @@
           <%= render 'topics/partials/questions_table' %>
         </div>
       <% else %>
-          <div class="content">
-            <h4>No Questions. Please add a new question!</h4>
-          </div>
+        <div class="content">
+          <h4>No Questions. Please add a new question!</h4>
+        </div>
       <% end %>
 
     </div><!-- end card -->

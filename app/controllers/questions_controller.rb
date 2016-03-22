@@ -3,6 +3,8 @@ class QuestionsController < ApplicationController
   before_action :set_topic
   before_action :set_question_type, only: [:new, :create, :edit, :update]
   before_action :is_teacher!, except: [ :index ]
+  respond_to :html, :js
+  
 
   # GET /questions
   # GET /questions.json

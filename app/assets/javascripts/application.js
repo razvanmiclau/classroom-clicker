@@ -20,3 +20,4 @@
 //= require turbolinks
 //= require jquery.turbolinks
 //= require jquery-selector
+//= require_tree .

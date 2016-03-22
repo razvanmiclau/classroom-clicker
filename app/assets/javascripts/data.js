@@ -1,32 +1,4 @@
-// //
-// // // Object calls
-// // var ajaxRequests = {
-// //   getColumnData = $.ajax({
-// //     url: 'localhost:3000',
-// //     dataType: 'json',
-// //     done: function(){
-// //       //do stuff
-// //     }
-// //     setTimeout(getColumnData, 1000)
-// //   }),
-// //
-// //   getPieData = $.ajax({
-// //     url: 'localhost:3000',
-// //     dataType: 'json',
-// //     done: function(){
-// //       //do stuff
-// //     }
-// //     setTimeout(getPieData, 1000)
-// //   }),
-// // };
-// //
-// // ajaxRequests.getPieData.abort() //Stop getting PieData requests.
-// //
-// // if (open == false) {
-// //   $.each(ajaxRequests, function(key,value){
-// //     key.abort()
-// //   })
-// // }
+
 //
 // var getColumnData = $.getJSON("/localhost:3000", function(data){
 //   // do something
