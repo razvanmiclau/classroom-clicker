@@ -16,9 +16,12 @@ var pieChart;
 var answers = [];
 
 $('.questions.show').ready(function(){
+  var dataURL = '/questions/' + question_id + '/data';
+  var dataTableURL = '/questions/' + question_id + '/dataTable';
+
   var fetchData = function(){
     var dataRequest = $.ajax({
-      url: '/questions/' + question_id + '/data',
+      url: dataURL,
       dataType: 'json',
       cache: false,
       async: true,
@@ -31,6 +34,7 @@ $('.questions.show').ready(function(){
       }
     });
   };
+
   var columnOptions = {
     chart: {
       renderTo: 'bar-chart',
@@ -72,6 +76,12 @@ $('.questions.show').ready(function(){
   pieChart = new Highcharts.Chart(pieOptions);
   //drawColumnChart(fetchData);
   //drawPieChart(fetchData);
+    $('.toggle-fullscreen').on('click', function(){
+      var targetElement = $('.screen')[0];
+      if(screenfull.enabled){
+        screenfull.toggle(targetElement);
+      }
+    });
 
 });
 

@@ -8,11 +8,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'cocoon'
-gem 'groupdate'
 gem 'chartkick'
 gem 'friendly_id'
 gem 'tinyurl_shortener'
 gem 'active_median'
+gem 'groupdate'
+gem 'faker'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
