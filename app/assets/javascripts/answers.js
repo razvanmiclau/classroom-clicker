@@ -31,11 +31,57 @@ $('.questions.show').ready(function(){
       }
     });
   };
+  var columnOptions = {
+    chart: {
+      renderTo: 'bar-chart',
+      type: 'column',
+      events: {load: function(){
+        fetchData();
+      }}
+    }
+  };
 
-  drawColumnChart(fetchData);
-  drawPieChart(fetchData);
+  var pieOptions = {
+    chart: {
+      renderTo : 'pie-chart',
+      type: 'pie',
+      events: {load: function() {
+          fetchData();
+        }
+      }
+    },
+    plotOptions: {
+            pie: {
+                allowPointSelect: true,
+                cursor: 'pointer',
+                dataLabels: {
+                    enabled: true,
+                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                    style: {
+                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                    }
+                },
+                showInLegend: true
+            }
+        }
+  };
+
+  columnOptions = $.extend(true, {}, defaultOptions, columnOptions);
+  pieOptions = $.extend(true, {}, defaultOptions, pieOptions);
+  barChart = new Highcharts.Chart(columnOptions);
+  pieChart = new Highcharts.Chart(pieOptions);
+  //drawColumnChart(fetchData);
+  //drawPieChart(fetchData);
 
 });
+
+var defaultOptions = {
+  title: {text: null},
+  xAxis: {answers: answers},
+  yAxis: {title: {text: null}},
+  series: [{name: 'Votes', data: []}]
+};
+
 
 var getColumnData = function(dt){
   var categories = [] ;
@@ -125,79 +171,4 @@ function createObjectArray(wordsArray){
     }
   }
   return objectArray;
-}
-
-function drawColumnChart(fetch) {
-  barChart = new Highcharts.Chart({
-    chart: {
-      renderTo : 'bar-chart',
-      type: 'column',
-      events: {
-        load: function() {
-          barChart = this;
-          fetch();
-        }
-      }
-    },
-    title: {
-      text: null
-    },
-    xAxis: {
-      answers: answers
-    },
-    yAxis: {
-      title: {
-        text: null
-      }
-    },
-    series: [{
-      name: 'Votes',
-      data: []
-    }]
-  });
-}
-
-function drawPieChart(fetch) {
-  pieChart = new Highcharts.Chart({
-    chart: {
-      renderTo : 'pie-chart',
-      type: 'pie',
-      events: {
-        load: function() {
-          pieChart = this;
-          fetch();
-        }
-      }
-    },
-    plotOptions: {
-            pie: {
-                allowPointSelect: true,
-                cursor: 'pointer',
-                dataLabels: {
-                    enabled: true,
-                    format: '<b>{point.name}</b>: {point.percentage:.1f} %',
-                    style: {
-                        color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                    }
-                },
-                showInLegend: true
-            }
-        },
-
-    title: {
-      text: null
-    },
-    xAxis: {
-      answers: answers
-    },
-    yAxis: {
-      title: {
-        text: null
-      }
-    },
-    series: [{
-      name: 'Votes',
-      data: []
-    }]
-  });
-}
+};
