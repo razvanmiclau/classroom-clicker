@@ -15,6 +15,27 @@ var barChart;
 var pieChart;
 var answers = [];
 
+$('.answers.index').ready(function(){
+    $('#choices-form input[type=submit]').on('click', function(){
+      var button_value = $(this).val();
+      console.log(button_value);
+      $('#choices-form input[type=text]').val(button_value);
+    });
+
+      $('#binary-choice-form input[type=submit]').on('click', function(){
+        var button_value = $(this).val();
+        console.log(button_value);
+        $('#binary-choice-form input[type=text]').val(button_value);
+      });
+
+    $('.toggle-fullscreen').on('click', function(){
+      var targetElement = $('.screen')[0];
+      if(screenfull.enabled){
+        screenfull.toggle(targetElement);
+      }
+    });
+});
+
 $('.questions.show').ready(function(){
   var dataURL = '/questions/' + question_id + '/data';
   var dataTableURL = '/questions/' + question_id + '/dataTable';
