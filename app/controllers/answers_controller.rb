@@ -5,6 +5,7 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
+    render layout: 'answers-layout'
   end
 
   def new
@@ -40,6 +41,11 @@ class AnswersController < ApplicationController
     @wordCloudArray = wordsArray.flatten #[1,2,3,4,5,6]
 
     render :json => {:answers => @data, :total => @total, :words => @wordCloudArray}
+  end
+
+  def test
+    @answers = Question.find(params[:question_id]).answers
+    render :json => @answers.group_by_day
   end
 
   private
