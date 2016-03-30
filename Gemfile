@@ -14,6 +14,9 @@ gem 'tinyurl_shortener'
 gem 'active_median'
 gem 'groupdate'
 gem 'faker'
+gem 'dateslices'
+gem 'ahoy_matey'
+gem 'activeuuid', '>= 0.5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'

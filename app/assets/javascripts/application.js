@@ -13,6 +13,7 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require ahoy
 //= require jqcloud
 //= require light-bootstrap-dashboard
 //= require screenfull
