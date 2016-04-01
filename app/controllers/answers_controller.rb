@@ -5,7 +5,6 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
-    render layout: 'answers-layout'
   end
 
   def new

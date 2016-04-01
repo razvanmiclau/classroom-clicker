@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160330140048) do
+ActiveRecord::Schema.define(version: 20160401133647) do
 
   create_table "ahoy_events", force: :cascade do |t|
     t.integer  "visit_id"
@@ -28,8 +28,9 @@ ActiveRecord::Schema.define(version: 20160330140048) do
   create_table "answers", force: :cascade do |t|
     t.string   "value"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.uuid     "visit_id",    limit: 16
   end
 
   add_index "answers", ["question_id"], name: "index_answers_on_question_id"
