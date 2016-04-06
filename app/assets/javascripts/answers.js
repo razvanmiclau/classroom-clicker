@@ -16,6 +16,13 @@ var pieChart;
 var answers = [];
 
 $('.answers.index').ready(function(){
+    $("form").submit(function(){
+      $(this).submit(function(){
+        return false;
+      });
+        return true;
+    })
+
     $('#choices-form input[type=submit]').on('click', function(){
       var button_value = $(this).val();
       console.log(button_value);

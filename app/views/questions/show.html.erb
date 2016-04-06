@@ -18,36 +18,24 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-8">
       <div class="card">
         <div class="header">
-          <h4 class="title">Favourite Devices</h4>
-          <p class="category">Devices used by the participants of this poll</p>
+          <h4 class="title">Student Engagement Rate</h4>
+          <p class="category">Activity based on student responses vs the numbers of visits</p>
         </div>
         <div class="content">
-          <%= pie_chart Visit.group(:device_type).count%>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="header">
-          <h4 class="title">Popular Browsers</h4>
-          <p class="category">Browsers used by the participants of this poll</p>
-        </div>
-        <div class="content">
-          <%= pie_chart Visit.group(:browser).count %>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-4">
-      <div class="card">
-        <div class="header">
-          <h4 class="title">Popular Browsers</h4>
-          <p class="category">Browsers used by the participants of this poll</p>
-        </div>
-        <div class="content">
-          <%= bar_chart connected_students: Visit.group_by_hour(:started_at).count, answers_received: @answers.count%>
+          <div class="row">
+            <div class="col-md-8">
+              <%= pie_chart test_path(@question)%>
+            </div>
+            <div class="col-md-4">
+              <div class="jumbotron">
+                <h2 class="text-center"><%= @rate %></h2>
+                <h4 class="text-center"><%= @question.engagement_rate %>%</h4>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

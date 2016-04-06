@@ -1,10 +1,17 @@
 class AnswersController < ApplicationController
   respond_to :html, :js
+  impressionist :actions => [:index, :test], unique: [:session_hash]
 
   def index
     @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
+    @session = session[:guest_user_id]
+    if @answers.exists?
+      @counts = @question.answers.first
+      impressionist(@counts)
+    end
+
   end
 
   def new
@@ -26,6 +33,7 @@ class AnswersController < ApplicationController
           format.json { render json: @answer.errors, status: :unprocessable_entity}
         end
       end
+    print ahoy.track "Answered Question", title: @question.title
   end
 
   def data
@@ -44,7 +52,9 @@ class AnswersController < ApplicationController
 
   def test
     @answers = Question.find(params[:question_id]).answers
-    render :json => @answers.group_by_day
+    @question = Question.find(params[:question_id])
+    @counts = @question.answers.first
+    render :json => {:answers => @answers.count, :visits => @counts.impressionist_count}
   end
 
   private

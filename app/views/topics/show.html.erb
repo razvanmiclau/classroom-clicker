@@ -4,10 +4,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="header">
-        <h4 class="title"><%= @topic.title %></h1><br>
+        <h4 class="title"><%= @topic.title %> <span class="badge"><%= @topic.questions.count %></span></h1><br>
           <p class="category">
             <%= link_to 'Add Question', new_topic_question_path(@topic), class: 'btn btn-sm btn-primary' %>
-            <%= link_to 'Edit', edit_topic_path(@topic), class: 'btn btn-warning btn-sm' %>
             <%= link_to 'Back', topics_path, class: 'btn btn-default btn-sm' %>
           </p>
       </div>
@@ -25,3 +24,40 @@
     </div><!-- end card -->
   </div><!-- end col-md-12 -->
 </div><!-- end row -->
+
+<% if @topic.questions.any? %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Popular Questions</h4>
+        </div>
+        <div class="content">
+          <%= pie_chart @topic.questions.group(:title).sum(:engagement_rate) %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Popular Browsers</h4>
+        </div>
+        <div class="content">
+          <%= bar_chart Visit.group(:os, :browser).count %>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="card">
+        <div class="header">
+          <h4 class="title">Popular Devices</h4>
+        </div>
+        <div class="content">
+          <%= pie_chart Visit.group(:device_type).count %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -16,6 +16,7 @@ gem 'groupdate'
 gem 'faker'
 gem 'dateslices'
 gem 'ahoy_matey'
+gem 'impressionist'
 gem 'activeuuid', '>= 0.5.0'
 
 # Use Uglifier as compressor for JavaScript assets

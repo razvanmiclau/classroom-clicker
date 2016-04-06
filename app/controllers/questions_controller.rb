@@ -4,7 +4,6 @@ class QuestionsController < ApplicationController
   before_action :set_question_type, only: [:new, :create, :edit, :update]
   before_action :is_teacher!, except: [ :index ]
   respond_to :html, :js
-  
 
   # GET /questions
   # GET /questions.json
@@ -17,6 +16,22 @@ class QuestionsController < ApplicationController
   def show
     @answers = @question.answers.all
     @tinyURL = TinyurlShortener.shorten(topic_question_answers_path(@topic, @question, @answer))
+    @counts = @question.answers.first
+
+    # CALCULATE THE ENGAGEMENT RATE
+    if @answers.count != 0
+      @question.engagement_rate = (@answers.count*100)/@counts.impressionist_count
+        if @question.engagement_rate.between? 0, 25
+          @rate = 'POOR'
+        elsif @question.engagement_rate.between? 25, 50
+          @rate = 'AVERAGE'
+        elsif @question.engagement_rate.between? 50, 75
+          @rate = 'GOOD'
+        else
+          @rate = 'EXCELLENT'
+        end
+      @question.save!
+    end
   end
 
   # GET /questions/new
@@ -68,6 +83,13 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def data
+    # SELECT("key1", "key2") to select only specific keys
+    # render :json => @topic.questions.select("topic_id, title, engagement_rate")
+    # render :json => Visit.select("id","visitor_token") => List of Visits
+    # render :json => Ahoy::Event.all.select("visit_id", "time")
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_question
@@ -85,6 +107,8 @@ class QuestionsController < ApplicationController
     def set_topic
       @topic = Topic.friendly.find(params[:topic_id])
     end
+
+
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def question_params

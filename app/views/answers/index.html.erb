@@ -1,5 +1,9 @@
 <div class="jumbotron">
   <h1 class="text-center"><%= @question.title %></h1>
+  <%= @session %>
+  <% if @answers.exists? %>
+    <%= @counts.impressionist_count %>
+  <% end %>
 </div>
 
 <div id="answers">
