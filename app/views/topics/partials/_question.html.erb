@@ -2,6 +2,7 @@
   <tr>
     <td><%= q.title %></td>
     <td><%= q.kind %></td>
+    <td class="text-center"><%= q.engagement_rate %></td>
     <td class="td-actions text-right">
       <%= link_to 'Show', [@topic, q], class: 'btn btn-info btn-simple btn-sm' %>
       <%= link_to 'Edit', edit_topic_question_path(@topic, q), class: 'btn btn-warning btn-simple btn-sm' %>

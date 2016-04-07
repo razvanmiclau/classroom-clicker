@@ -4,7 +4,7 @@ class QuestionsController < ApplicationController
   before_action :set_question_type, only: [:new, :create, :edit, :update]
   before_action :is_teacher!, except: [ :index ]
   respond_to :html, :js
-  
+
 
   # GET /questions
   # GET /questions.json
@@ -17,6 +17,24 @@ class QuestionsController < ApplicationController
   def show
     @answers = @question.answers.all
     @tinyURL = TinyurlShortener.shorten(topic_question_answers_path(@topic, @question, @answer))
+    @visits = @question.answers.first
+
+    # CALCULATE ENGAGEMENT RATE
+    if @answers.count != 0
+      @question.engagement_rate = (@answers.count*100)/@visits.impressionist_count
+        if @question.engagement_rate.between? 0, 25
+          @rate = 'POOR'
+        elsif @question.engagement_rate.between? 25, 50
+          @rate = 'AVERAGE'
+        elsif @question.engagement_rate.between? 50, 75
+          @rate = 'GOOD'
+        elsif @question.engagement_rate > 100
+          @question.engagement_rate = 100
+        else
+          @rate = 'EXCELLENT'
+        end
+      @question.save!
+    end
   end
 
   # GET /questions/new
