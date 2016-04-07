@@ -5,6 +5,10 @@ class AnswersController < ApplicationController
     @question = Question.find(params[:question_id])
     @answers = @question.answers.all
     @answer = @question.answers.build
+    @visit = @question.answers.first
+    if @answers.any?
+      impressionist(@visit)
+    end
   end
 
   def new

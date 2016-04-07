@@ -14,6 +14,7 @@ gem 'tinyurl_shortener'
 gem 'active_median'
 gem 'groupdate'
 gem 'faker'
+gem 'impressionist'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -38,7 +39,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  #gem 'pg'
   gem 'rails_12factor'
 end
 

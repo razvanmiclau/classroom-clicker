@@ -14,13 +14,18 @@ var colors = ["cornflowerblue",
 var barChart;
 var pieChart;
 var answers = [];
+var dataRequest;
+
+$('.topics.show').ready(function(){
+  //dataRequest.abort();
+});
 
 $('.questions.show').ready(function(){
   var dataURL = '/questions/' + question_id + '/data';
   var dataTableURL = '/questions/' + question_id + '/dataTable';
 
   var fetchData = function(){
-    var dataRequest = $.ajax({
+    dataRequest = $.ajax({
       url: dataURL,
       dataType: 'json',
       cache: false,

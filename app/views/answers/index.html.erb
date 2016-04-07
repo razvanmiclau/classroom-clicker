@@ -1,5 +1,8 @@
 <div class="jumbotron">
   <h1 class="text-center"><%= @question.title %></h1>
+  <% if @answers.any? %>
+    <h4 class="text-center">You are the <%= @visit.impressionist_count + 1 %>th visitor</h4>
+  <% end %>
 </div>
 
 <div id="answers">
