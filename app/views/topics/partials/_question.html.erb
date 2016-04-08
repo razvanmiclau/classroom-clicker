@@ -4,6 +4,7 @@
     <td><%= q.kind %></td>
     <td class="text-center"><%= q.engagement_rate %></td>
     <td class="td-actions text-right">
+      <%= link_to 'Stats', topic_question_statistics_path(@topic, q), class: 'btn btn-info btn-simple btn-sm'%>
       <%= link_to 'Show', [@topic, q], class: 'btn btn-info btn-simple btn-sm' %>
       <%= link_to 'Edit', edit_topic_question_path(@topic, q), class: 'btn btn-warning btn-simple btn-sm' %>
       <%= link_to 'Destroy', [@topic, q], class: 'btn btn-danger btn-simple btn-sm', method: :delete, data: { confirm: 'Are you sure?' } %>

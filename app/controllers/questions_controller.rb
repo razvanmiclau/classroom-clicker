@@ -9,7 +9,8 @@ class QuestionsController < ApplicationController
   # GET /questions
   # GET /questions.json
   def index
-    @questions = Question.all
+    #@questions = Question.all
+    @questions = @topic.questions.all
   end
 
   # GET /questions/1
@@ -35,6 +36,49 @@ class QuestionsController < ApplicationController
         end
       @question.save!
     end
+  end
+
+  def statistics
+    @question = Question.find(params[:question_id])
+    @answers = @question.answers
+    @visits = @question.answers.first
+  end
+
+  def data
+    # {id: 1, title: 'What sup', answers: 5, visits: 5, ER: 100}
+      questionsHash = @topic.questions.all
+      @questionsArray = Array.new
+        # questionsHash.each do |question|
+        #   @questionsArray.push(
+        #     { :id => question['id'],
+        #       :title => question['title'],
+        #       :answers => question.answers.count,
+        #       :visits => question.answers.first.impressionist_count,
+        #       :engagement_rate => question['engagement_rate']
+        #     }
+        #   )
+        # end
+
+        @chartArray = Array.new
+        @answersObject = {name: "answers"}
+        @visitsObject = {name: "visits"}
+        @rateObject = {name: "engagement rate"}
+        answers = []
+        visits = []
+        rates = []
+
+        questionsHash.each do |q|
+          answers.push([q['title'], q.answers.count])
+          visits.push([q['title'], q.answers.first.impressionist_count])
+          rates.push([q['title'], q['engagement_rate']])
+        end
+        @answersObject[:data] = answers
+        @visitsObject[:data] = visits
+        @rateObject[:data] = rates
+        @chartArray.push(@answersObject, @visitsObject, @rateObject)
+
+    #render :json => @questionsArray.chart_json
+    render :json => @chartArray
   end
 
   # GET /questions/new

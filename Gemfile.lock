@@ -66,6 +66,8 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    dateslices (0.0.4)
+      rails (> 4)
     debug_inspector (0.0.2)
     devise (3.5.2)
       bcrypt (~> 3.0)
@@ -85,8 +87,6 @@ GEM
       activerecord (>= 4.0.0)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
-    groupdate (2.5.1)
-      activesupport (>= 3)
     hirb (0.7.3)
     http-cookie (1.0.2)
       domain_name (~> 0.5)
@@ -223,10 +223,10 @@ DEPENDENCIES
   byebug
   chartkick
   cocoon
+  dateslices
   devise
   faker
   friendly_id
-  groupdate
   hirb
   impressionist
   jbuilder (~> 2.0)

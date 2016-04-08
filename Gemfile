@@ -12,8 +12,8 @@ gem 'chartkick'
 gem 'friendly_id'
 gem 'tinyurl_shortener'
 gem 'active_median'
-gem 'groupdate'
 gem 'faker'
+gem 'dateslices'
 gem 'impressionist'
 
 # Use Uglifier as compressor for JavaScript assets

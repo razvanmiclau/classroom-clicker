@@ -13,6 +13,8 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :questions do
+      get 'statistics'
+      get 'data'
       resources :answers
     end
   end
