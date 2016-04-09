@@ -19,13 +19,15 @@
             </tbody>
           </table>
         </div>
-        <div class="footer">
-          <hr>
-          <div class="stats">
-            <i class="glyphicon glyphicon-time"></i>
-            Updated <%= time_ago_in_words(@answers.last.created_at) %> ago
+        <% if @answers.any? %>
+          <div class="footer">
+            <hr>
+            <div class="stats">
+              <i class="glyphicon glyphicon-time"></i>
+              Updated <%= time_ago_in_words(@answers.last.created_at) %> ago
+            </div>
           </div>
-        </div>
+        <% end %>
       </div>
     </div>
   </div>

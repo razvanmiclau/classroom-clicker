@@ -18,7 +18,5 @@
 //= require light-bootstrap-dashboard
 //= require screenfull
 //= require cocoon
-//= require turbolinks
-//= require jquery.turbolinks
 //= require jquery-selector
 //= require_tree .
