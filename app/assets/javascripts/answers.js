@@ -123,12 +123,15 @@ var getPieData = function(dt){
 var getData = function(dt){
   $('#lect-answers').children().remove();
     for (var i = 0; i < dt.length; i++) {
-      var strVar = "";
-      //stringVal += "<p class=\"bg-info answer-line\"><strong>Anonymus: <\/strong>"+data[i].value+"</p>";
+      var strVar="";
       strVar += "<div class=\"col-sm-3\">";
-      strVar += "<div class=\"panel\">";
-      strVar += "<div class=\"panel-body\">";
-      strVar += "<h4>" + dt[i].value + "</h4>";
+      strVar += "<div class=\"card\">";
+      strVar += "<div class=\"content\">";
+      strVar += "<h4>"+"\""+dt[i].value+"\""+"<\/h4>";
+      strVar += "<div class=\"footer\">";
+      strVar += "<hr>";
+      strVar += "<div class=\"stats\">"+ moment(dt[i].created_at).fromNow() + "<\/div>";
+      strVar += "<\/div>";
       strVar += "<\/div>";
       strVar += "<\/div>";
       strVar += "<\/div>";

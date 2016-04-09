@@ -2,14 +2,17 @@
   <% if @answers.any? %>
     <div id="lect-answers">
       <% @answers.each do |answer| %>
-      <div class="col-sm-3">
-        <div class="card answer-card">
-          <div class="content">
-            <h3><%= answer.value %></h3>
+        <div class="col-sm-3">
+          <div class="card">
+            <div class="content">
+              <h3><%= answer.value %></h3>
+              <div class="footer">
+                <hr>
+                <div class="stats"><%= time_ago_in_words(answer.created_at) %></div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-        <!--<p class="bg-info answer-line"><strong>Anonymus: </strong><%= answer.value %> <small><%= time_ago_in_words(answer.created_at) %> ago</small></p>-->
       <% end %>
     </div>
   <% else %>

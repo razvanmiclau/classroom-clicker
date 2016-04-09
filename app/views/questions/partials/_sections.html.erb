@@ -1,12 +1,12 @@
 <div class="tab-content">
 
 <!-- CARDS -->
-  <div id="tab-questions" class="col-md-12 tab-pane">
+  <div id="tab-questions" class="col-md-12 tab-pane active">
     <div class="card">
       <div class="header">
-        <h4 class="title">Email Statistics</h4>
-        <p class="category">Last Campaign Performance</p>
-      </div>
+        <h1 class="title text-center"><%= @question.title %></h1>
+        <p class="category text-center">Please share the following link to your students: <%= link_to @tinyURL, @tinyURL %></p>
+      </div><hr>
 
       <div class="content">
         <%= render 'answerBox' %>
@@ -17,6 +17,10 @@
 <!-- WORD CLOUD -->
   <div id="tab-replies" class="col-md-12 tab-pane">
     <div class="card">
+      <div class="header">
+        <h1 class="title text-center"><%= @question.title %></h1>
+        <p class="category text-center">Please share the following link to your students: <%= link_to @tinyURL, @tinyURL %></p>
+      </div><hr>
       <div class="content">
         <div id="cloud"></div>
       </div>
@@ -24,12 +28,12 @@
   </div>
 
 <!-- BAR CHART -->
-  <div id="tab-stats" class="col-md-12 tab-pane active">
+  <div id="tab-stats" class="col-md-12 tab-pane">
     <div class="card">
       <div class="header">
-        <h4 class="title"><%= @question.title %></h4>
-        <p class="category">Student Votes</p>
-      </div>
+        <h1 class="title text-center"><%= @question.title %></h1>
+        <p class="category text-center">Please share the following link to your students: <%= link_to @tinyURL, @tinyURL %></p>
+      </div><hr>
 
       <div class="content">
         <!-- <div id="bar-chart" class="chart"></div> -->
@@ -42,9 +46,9 @@
   <div id="tab-pie"  class="col-md-12 tab-pane">
     <div class="card">
       <div class="header">
-        <h4 class="title"><%= @question.title %></h4>
-        <p class="category">Student Votes</p>
-      </div>
+        <h1 class="title text-center"><%= @question.title %></h1>
+        <p class="category text-center">Please share the following link to your students: <%= link_to @tinyURL, @tinyURL %></p>
+      </div><hr>
 
       <div class="content">
         <!-- <div id="pie-chart" class="chart"></div> -->
