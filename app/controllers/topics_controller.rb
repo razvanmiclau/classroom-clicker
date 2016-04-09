@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :is_teacher!, except: [ :index ]
+  before_action :authenticate_user!, except: [ :index ]
   respond_to :html, :js
 
   # GET /topics
