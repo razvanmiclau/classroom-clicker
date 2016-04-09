@@ -17,7 +17,8 @@ class QuestionsController < ApplicationController
   # GET /questions/1.json
   def show
     @answers = @question.answers.all
-    @tinyURL = TinyurlShortener.shorten(topic_question_answers_path(@topic, @question, @answer))
+    @domain = request.base_url
+    @tinyURL = TinyurlShortener.shorten(@domain + topic_question_answers_path(@topic, @question, @answer))
     @visits = @question.answers.first
 
     # CALCULATE ENGAGEMENT RATE
