@@ -13,3 +13,8 @@ $(document).ready(function(){
       };
     });
 });
+
+$('.topics.show').ready(function(){
+  //dataRequest.abort();
+  
+});

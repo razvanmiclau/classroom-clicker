@@ -16,10 +16,6 @@ var pieChart;
 var answers = [];
 var dataRequest;
 
-$('.topics.show').ready(function(){
-  //dataRequest.abort();
-});
-
 $('.questions.show').ready(function(){
   var dataURL = '/questions/' + question_id + '/data';
   var dataTableURL = '/questions/' + question_id + '/dataTable';
