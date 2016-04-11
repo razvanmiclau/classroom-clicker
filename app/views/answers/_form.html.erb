@@ -11,6 +11,10 @@
     </div>
   <% end %>
 
-  <%= f.text_field :value, skip_label: true, placeholder: 'Your answer' %>
-  <%= f.submit "Submit", class: "btn btn-primary vote-btn" %>
+  <div class="col-md-11">
+    <%= f.text_field :value, skip_label: true, placeholder: 'Please type your answer here...' %>
+  </div>
+  <div class="col-md-1">
+    <%= f.submit "Submit", class: "btn btn-primary btn-fill vote-btn" %>
+  </div>
 <% end %>

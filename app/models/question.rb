@@ -3,10 +3,17 @@ class Question < ActiveRecord::Base
   self.primary_key = :uuid
 
   belongs_to :topic
-  has_many :choices
-  has_many :answers
+  has_many :choices, :dependent => :destroy
+  has_many :answers, :dependent => :destroy
 
   accepts_nested_attributes_for :choices, reject_if: proc { |attributes| attributes['title'].blank?}, allow_destroy: true
+  
+  # VALIDATIONS
+  validates :title,
+    presence: true,
+    length: {minimum: 6},
+    uniqueness: {scope: :topic, case_sensitive: false , message: "Only once per topic"}
+
   private
     def set_uuid
       self.uuid = generate_uuid

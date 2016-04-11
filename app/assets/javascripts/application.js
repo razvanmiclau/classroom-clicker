@@ -24,33 +24,33 @@
 
 // DELETE BUTTON - Replacing conventional alert with Sweetalert.js
 $(document).ready(function(){
-  $.rails.allowAction = function(link) {
-  if (!link.attr('data-confirm')) {
-    return true;
-  }
-  $.rails.showConfirmDialog(link);
-  return false;
-};
+    $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
 
-$.rails.confirmed = function(link) {
-  link.removeAttr('data-confirm');
-  return link.trigger('click.rails');
-};
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    return link.trigger('click.rails');
+  };
 
-$.rails.showConfirmDialog = function(link) {
-  swal({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonColor: '#3085d6',
-  cancelButtonColor: '#d33',
-  confirmButtonText: 'Yes, delete it!',
-  closeOnConfirm: false
-}).then(function(isConfirm) {
-  if (isConfirm) {
-    $.rails.confirmed(link)
-  }
-})
-};
+  $.rails.showConfirmDialog = function(link) {
+    swal({
+    title: 'Are you sure?',
+    text: "You won't be able to revert this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!',
+    closeOnConfirm: false
+  }).then(function(isConfirm) {
+    if (isConfirm) {
+      $.rails.confirmed(link)
+    }
+  })
+  };
 });
