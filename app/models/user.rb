@@ -5,6 +5,8 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable, password_length: 8..128
 
   has_many :topics, :dependent => :destroy
+  has_many :questions, :through => :topics
+  has_many :answers, :through => :questions 
 
   VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
   validates :first_name, presence:true, length: {maximum: 50}

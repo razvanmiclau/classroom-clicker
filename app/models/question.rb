@@ -3,11 +3,12 @@ class Question < ActiveRecord::Base
   self.primary_key = :uuid
 
   belongs_to :topic
+  belongs_to :user
   has_many :choices, :dependent => :destroy
   has_many :answers, :dependent => :destroy
 
   accepts_nested_attributes_for :choices, reject_if: proc { |attributes| attributes['title'].blank?}, allow_destroy: true
-  
+
   # VALIDATIONS
   validates :title,
     presence: true,

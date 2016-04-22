@@ -1,8 +1,8 @@
 <h2>Login</h2><hr>
 
 <%= bootstrap_form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-
-    <%= f.email_field :email, autofocus: true, placeholder: 'Your E-mail' %>
+<%= devise_error_messages! %>
+    <%= f.email_field :email, autofocus: true, placeholder: 'Your E-mail'%>
     <%= f.password_field :password, autocomplete: "off", placeholder: 'Your Password' %>
 
   <% if devise_mapping.rememberable? -%>
