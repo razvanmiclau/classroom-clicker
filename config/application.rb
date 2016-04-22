@@ -31,7 +31,9 @@ module ClassroomClicker
         :helper_specs => false,
         :routing_specs => false,
         :controller_specs => true,
-        :request_specs => true,
-      generate.fixture_replacement :factory_girl, :dir => 'spec/factories'
+        :request_specs => true
+      generate.fixture_replacement :factory_girl, :dir => "spec/factories"
+    end
+
   end
 end
