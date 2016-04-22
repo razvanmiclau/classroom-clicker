@@ -5,7 +5,7 @@
         </div>
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-              <% if controller.controller_name.upcase == 'QUESTIONS' %>
+              <% if controller.controller_name.upcase == 'QUESTIONS' && action_name == 'show' %>
                 <li>
                   <%= link_to '#', class: 'toggle-fullscreen' do %>
                     <i class="glyphicon glyphicon-fullscreen"></i>
@@ -23,12 +23,14 @@
                           Cards View
                         <% end %>
                       </li>
-                      <li>
-                        <%= link_to "#tab-replies", data: { toggle: "tab" } do %>
-                          <span class="glyphicon glyphicon-list-alt"></span>
-                          Word Cloud
-                        <% end %>
-                      </li>
+                      <% if @question.kind == 'Open Question' %>
+                        <li>
+                          <%= link_to "#tab-replies", data: { toggle: "tab" } do %>
+                            <span class="glyphicon glyphicon-list-alt"></span>
+                            Word Cloud
+                          <% end %>
+                        </li>
+                      <% end %>
                       <li>
                         <%= link_to "#tab-stats", data: { toggle: "tab" } do %>
                           <span class="glyphicon glyphicon-stats"></span>

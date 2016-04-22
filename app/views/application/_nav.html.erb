@@ -11,9 +11,10 @@
 
   <div class="sidebar-wrapper">
         <div class="logo">
-            <%= link_to 'Clickr', root_path, class: 'simple-text' %>
+            <%= link_to 'Clickr.', root_path, class: 'logo' %>
         </div>
 
+      <% if current_or_guest_user == current_user %>
         <ul class="nav">
             <li class="active">
                 <%= link_to(root_path) do %>
@@ -30,6 +31,7 @@
             </li>
 
         </ul>
+      <% end %>
   </div>
 </div>
 

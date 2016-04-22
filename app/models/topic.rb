@@ -1,5 +1,10 @@
 class Topic < ActiveRecord::Base
-  validates_presence_of :title
-  has_many :questions
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+  
   belongs_to :user
+  has_many :questions, :dependent => :destroy
+
+  validates :title, presence: true, length: {minimum: 4}, uniqueness: {scope: :user}
+
 end

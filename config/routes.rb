@@ -13,13 +13,13 @@ Rails.application.routes.draw do
 
   resources :topics do
     resources :questions do
+      get 'statistics'
+      get 'data'
       resources :answers
     end
   end
 
   get 'questions/:question_id/data' => 'answers#data'
-  get 'questions/:question_id/total' => 'answers#total'
-  get 'questions/:question_id/words' => 'answers#words'
   post 'question/:question_id/create' => 'answers#create'
 
   # The priority is based upon order of creation: first created -> highest priority.

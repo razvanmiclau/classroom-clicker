@@ -1,23 +1,36 @@
-<div class="jumbotron">
-  <h1 class="text-center"><%= @question.title %></h1>
-</div>
+<div id="answers-panel">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="header">
+        <h1 class="title text-center"><%= @question.title %></h1>
+        <% if @answers.any? %>
+          <p class="category text-center">You are the <%= @visit.impressionist_count + 1 %>th visitor</p>
+        <% else %>
+          <p class="category text-center">Be the first student who answers this questions!</p>
+        <% end %>
+        <%= render "form_container" %>
 
-<div id="answers">
-  <%= render 'answer' %>
-</div>
-<hr>
-<% if @question.choices.any? || @question.kind == "True/False" %>
-  <div class="row">
-      <% if @question.kind != "True/False" %>
-        <%= render 'choices_form' %>
-      <% else %>
-        <%= render 'binary_choice_form' %>
-      <% end %>
-  </div>
-<% else %>
-  <div class="row">
-    <div class="col-sm-12">
-      <%= render 'form' %>
+      </div>
+      <div class="content">
+        <div class="table-full-width">
+          <table class="table">
+            <tbody id="answers">
+              <%= render 'answer' %>
+            </tbody>
+          </table>
+        </div>
+        <% if @answers.any? %>
+          <div class="footer">
+            <hr>
+            <div class="stats">
+              <i class="glyphicon glyphicon-time"></i>
+              Updated <%= time_ago_in_words(@answers.last.created_at) %> ago
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
-<% end %>
+</div>
+
+<hr>

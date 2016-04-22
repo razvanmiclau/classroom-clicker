@@ -8,9 +8,16 @@ gem 'sass-rails', '~> 5.0'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
 gem 'cocoon'
-gem 'groupdate'
 gem 'chartkick'
+gem 'friendly_id'
+gem 'tinyurl_shortener'
 gem 'active_median'
+gem 'faker'
+gem 'dateslices'
+gem 'impressionist'
+gem 'momentjs-rails'
+
+
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use jquery as the JavaScript library
@@ -34,7 +41,7 @@ group :development, :test do
 end
 
 group :production do
-  gem 'pg'
+  #gem 'pg'
   gem 'rails_12factor'
 end
 

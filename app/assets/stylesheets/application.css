@@ -24,6 +24,26 @@
   * For details, see http://www.apache.org/licenses/LICENSE-2.0.
   */
 
+html, html a{
+  -webkit-font-smoothing: antialiased;
+}
+
+/* LOGO */
+.logo {
+  font-family: 'Pacifico', cursive;
+  font-size: 36px;
+  padding: 5px 0px;
+  color: #ecf0f1;
+  text-align: center;
+  line-height: 36px;
+}
+
+.logo a.logo {
+  border-bottom: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+
  /* Toggle Styles */
 
  /* Notification Styles */

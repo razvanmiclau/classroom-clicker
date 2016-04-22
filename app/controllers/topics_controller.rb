@@ -1,6 +1,6 @@
 class TopicsController < ApplicationController
   before_action :set_topic, only: [:show, :edit, :update, :destroy]
-  before_action :is_teacher!, except: [ :index ]
+  before_action :authenticate_user!, except: [ :index ]
   respond_to :html, :js
 
   # GET /topics
@@ -67,7 +67,7 @@ class TopicsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_topic
-      @topic = Topic.find(params[:id])
+      @topic = Topic.friendly.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

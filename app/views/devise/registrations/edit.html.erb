@@ -32,7 +32,9 @@
                 <%= f.password_field :current_password, autocomplete: "off" %>
 
               <div class="actions">
-                <%= f.submit "Update", class: 'btn btn-primary' %>
+                <%= f.submit "Update", class: 'btn btn-primary btn-fill' %>
+                <%= button_to "Delete account", registration_path(resource_name), class: 'btn btn-danger btn-fill', data: { confirm: "Are you sure?" }, method: :delete %>
+                <div class="clearfix"></div>
               </div>
             <% end %>
           </div><!-- end content -->
@@ -47,9 +49,36 @@
           <div class="content">
             <div class="author">
               <%= image_tag display_avatar(128), class: 'avatar' %>
-              <h4 class="title"><%= display_fullname %><br>
-                <small><%= display_username %></small>
-              </h4>
+              <h4 class="title"><%= display_fullname %></h4>
+            </div><br><hr>
+            <div class="description text-center">
+              <div class="row">
+                <div class="col-md-4">
+                  <h3><%= current_user.topics.count %><br><small>Classrooms</small></h3>
+                </div>
+
+                <div class="col-md-4">
+                  <h3>
+                    <% if current_user.topics.any? %>
+                      <%= current_user.questions.count %>
+                    <% else %>
+                      0
+                    <% end %>
+                    <br><small>Questions</small>
+                  </h3>
+                </div>
+
+                <div class="col-md-4">
+                  <h3>
+                    <% if current_user.questions.any? %>
+                      <%= current_user.answers.count %>
+                    <% else %>
+                      0
+                    <% end %>
+                    <br><small>Answers</small>
+                  </h3>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -57,25 +86,5 @@
     </div><!-- end row -->
 
 
-  </div>
-</div>
-
-<div class="content">
-  <div class="container-fluid">
-    <div class="row">
-      <div class="content">
-        <div class="col-md-4">
-          <div class="card">
-            <div class="header">
-              <h4 class="title">Delete Account</h4>
-            </div>
-            <div class="content">
-              <%= button_to "Delete account", registration_path(resource_name), class: 'btn btn-danger', data: { confirm: "Are you sure?" }, method: :delete %>
-              <%= link_to "Back", :back, class: 'btn btn-simple btn-xs' %>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>

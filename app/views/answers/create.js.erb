@@ -1,2 +1,2 @@
 $('#answers').children().remove();
-$("<%= escape_javascript(render @answer) %>").appendTo("#answers");
+$("<%= j render @answer %>").hide().appendTo("#answers").fadeIn(1000);
