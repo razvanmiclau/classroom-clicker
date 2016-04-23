@@ -1,5 +1,14 @@
 class AnswersController < ApplicationController
   respond_to :html, :js
+  layout :custom_layout
+
+  def custom_layout
+    if current_or_guest_user == guest_user
+      "student-layout"
+    else
+      "application"
+    end
+  end
 
   def index
     @question = Question.find(params[:question_id])

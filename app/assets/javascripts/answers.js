@@ -14,6 +14,7 @@ var colors = ["cornflowerblue",
 var barChart;
 var pieChart;
 var answers = [];
+// var conjunction_list = ['it', 'the', 'for', 'so', 'but', 'or', 'yet', 'i', 'for', 'and', 'nor', 'yet', 'as', 'since', 'rather', 'than'];
 var dataRequest;
 
 $('.questions.show').ready(function(){
@@ -162,7 +163,6 @@ var getWords = function(dt){
     });
 
     $('#cloud').jQCloud('update', words_array);
-
 };
 
 function createObjectArray(wordsArray){
@@ -179,9 +179,9 @@ function createObjectArray(wordsArray){
     }
     if(counter > 0){
       var obj = new Object();
-      obj.text = wordsArray[i];
-      obj.weight = counter;
-      objectArray.push(obj);
+        obj.text = wordsArray[i];
+        obj.weight = counter;
+        objectArray.push(obj);
     }
   }
   return objectArray;

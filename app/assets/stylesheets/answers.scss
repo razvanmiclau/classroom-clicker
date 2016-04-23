@@ -1,3 +1,26 @@
 // Place all the styles related to the answers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.vote-btn{
+  width:100%;
+}
+
+.full-wrapper .content{
+  max-height:600px;
+  overflow-y:scroll;
+}
+
+@media (max-width: 991px){
+  .vote-btn{
+    margin-top:26px;
+    width: 100%;
+    height: 64px;
+    font-size: 1em;
+
+  }
+
+  input#answer_value{
+    height:64px;
+  }
+}
