@@ -28,6 +28,25 @@ html, html a{
   -webkit-font-smoothing: antialiased;
 }
 
+.wrapper{
+  margin: 0;
+  padding: 0;
+  height:auto;
+  width:100%;
+  background-color: #3498db;
+  /*background-color: rgba(52, 152, 219, 0.9);*/
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+em{
+  display: inline;
+  float:right;
+  color:#e74c3c;
+}
+
 /* LOGO */
 .logo {
   font-family: 'Pacifico', cursive;
@@ -42,6 +61,13 @@ html, html a{
   border-bottom: none;
   box-shadow: none;
   text-decoration: none;
+}
+
+h1.logo{
+  color: #ecf0f1;
+  margin:1em 0;
+  font-size: 64px;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
 }
 
  /* Toggle Styles */
@@ -115,4 +141,9 @@ html, html a{
 #cloud{
   width:100%;
   border: 1px solid #ccc;
+}
+
+label.error{
+  color:#e74c3c;
+  padding:5px 0;
 }

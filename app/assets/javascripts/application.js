@@ -13,6 +13,8 @@
 //= require jquery
 //= require bootstrap-sprockets
 //= require jquery_ujs
+//= require jquery.validate
+//= require jquery.validate.additional-methods
 //= require moment
 //= require jqcloud
 //= require light-bootstrap-dashboard
@@ -22,8 +24,12 @@
 //= require_tree .
 
 
+
 // DELETE BUTTON - Replacing conventional alert with Sweetalert.js
 $(document).ready(function(){
+  $('#new_user').validate();
+  $('#new_answer').validate();
+
     $.rails.allowAction = function(link) {
     if (!link.attr('data-confirm')) {
       return true;

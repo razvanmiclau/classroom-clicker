@@ -135,6 +135,9 @@ GEM
     jquery-turbolinks (2.1.0)
       railties (>= 3.1.0)
       turbolinks
+    jquery-validation-rails (1.13.1)
+      railties (>= 3.2, < 5.0)
+      thor (~> 0.14)
     json (1.8.3)
     launchy (2.4.3)
       addressable (~> 2.3)
@@ -312,6 +315,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   jquery-turbolinks
+  jquery-validation-rails
   launchy
   momentjs-rails
   rails (= 4.2.4)
