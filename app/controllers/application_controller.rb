@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
   layout :custom_layout
 
   def custom_layout
-    if devise_controller? && resource_name == :user && action_name == 'new'
+    if devise_controller? && action_name != 'edit'
       "home-layout"
     else
       "application"

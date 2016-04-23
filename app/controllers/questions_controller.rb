@@ -23,7 +23,7 @@ class QuestionsController < ApplicationController
 
     # CALCULATE ENGAGEMENT RATE
     if @answers.count != 0
-      @question.engagement_rate = (@answers.count*100)/@visits.impressionist_count
+      @question.engagement_rate = (@answers.count*100)/(@visits.impressionist_count.nonzero? || 1)
         if @question.engagement_rate.between? 0, 25
           @rate = 'POOR'
         elsif @question.engagement_rate.between? 25, 50

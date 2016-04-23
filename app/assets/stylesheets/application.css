@@ -28,7 +28,7 @@ html, html a{
   -webkit-font-smoothing: antialiased;
 }
 
-.wrapper{
+.full-wrapper{
   margin: 0;
   padding: 0;
   height:auto;
