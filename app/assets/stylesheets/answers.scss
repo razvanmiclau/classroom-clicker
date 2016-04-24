@@ -1,23 +1,21 @@
-// Place all the styles related to the answers controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
+// Student-answer button should occupy the full-width of the parent div
 .vote-btn{
   width:100%;
 }
 
-.full-wrapper .content{
+// Adds scrollbar to the panel with answers
+.full-wrapper .answers-content{
   max-height:600px;
   overflow-y:scroll;
 }
 
+// Fix layout issue on mobile devices
 @media (max-width: 991px){
   .vote-btn{
     margin-top:26px;
     width: 100%;
     height: 64px;
     font-size: 1em;
-
   }
 
   input#answer_value{

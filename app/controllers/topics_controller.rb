@@ -3,15 +3,11 @@ class TopicsController < ApplicationController
   before_action :authenticate_user!, except: [ :index ]
   respond_to :html, :js
 
-  # GET /topics
-  # GET /topics.json
   def index
     @topics = current_user.topics
     @topics_count = current_user.topics.count
   end
 
-  # GET /topics/1
-  # GET /topics/1.json
   def show
   end
 
@@ -20,15 +16,11 @@ class TopicsController < ApplicationController
     @topic = current_user.topics.build
   end
 
-  # GET /topics/1/edit
   def edit
   end
 
-  # POST /topics
-  # POST /topics.json
   def create
     @topic = current_user.topics.build(topic_params)
-
     respond_to do |format|
       if @topic.save
         format.html { redirect_to @topic, notice: 'Topic was successfully created.' }
@@ -40,8 +32,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /topics/1
-  # PATCH/PUT /topics/1.json
   def update
     respond_to do |format|
       if @topic.update(topic_params)
@@ -54,8 +44,6 @@ class TopicsController < ApplicationController
     end
   end
 
-  # DELETE /topics/1
-  # DELETE /topics/1.json
   def destroy
     @topic.destroy
     respond_to do |format|
@@ -65,14 +53,11 @@ class TopicsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_topic
       @topic = Topic.friendly.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def topic_params
       params.require(:topic).permit(:title)
     end
-
 end

@@ -18,9 +18,11 @@ var answers = [];
 var dataRequest;
 
 $('.questions.show').ready(function(){
+  // URLs
   var dataURL = '/questions/' + question_id + '/data';
   var dataTableURL = '/questions/' + question_id + '/dataTable';
 
+  // GET json data and pass it to charts
   var fetchData = function(){
     dataRequest = $.ajax({
       url: dataURL,
@@ -37,6 +39,7 @@ $('.questions.show').ready(function(){
     });
   };
 
+  // Column-chart options
   var columnOptions = {
     chart: {
       renderTo: 'bar-chart',
@@ -47,6 +50,7 @@ $('.questions.show').ready(function(){
     }
   };
 
+// Pie-chart options
   var pieOptions = {
     chart: {
       renderTo : 'pie-chart',
@@ -72,12 +76,17 @@ $('.questions.show').ready(function(){
         }
   };
 
+  // Append specific chart options to the default chart
   columnOptions = $.extend(true, {}, defaultOptions, columnOptions);
   pieOptions = $.extend(true, {}, defaultOptions, pieOptions);
+
+  // Call charts
   barChart = new Highcharts.Chart(columnOptions);
   pieChart = new Highcharts.Chart(pieOptions);
   //drawColumnChart(fetchData);
   //drawPieChart(fetchData);
+
+  // Toggle Fullscreen - Share results
     $('.toggle-fullscreen').on('click', function(){
       var targetElement = $('.screen')[0];
       if(screenfull.enabled){
@@ -87,6 +96,7 @@ $('.questions.show').ready(function(){
 
 });
 
+// Default Chart Options - options shared by all charts
 var defaultOptions = {
   title: {text: null},
   xAxis: {answers: answers},
@@ -94,7 +104,7 @@ var defaultOptions = {
   series: [{name: 'Votes', data: []}]
 };
 
-
+// pass json data to the column-chart
 var getColumnData = function(dt){
   var categories = [] ;
   var answer = [];
@@ -106,6 +116,7 @@ var getColumnData = function(dt){
   barChart.series[0].setData(answer);
 };
 
+// pass json data to the pie-chart
 var getPieData = function(dt){
   var dataObjectArray = [];
     $.each(dt, function(i,e){
@@ -117,6 +128,7 @@ var getPieData = function(dt){
   pieChart.series[0].setData(dataObjectArray);
 };
 
+// pass json data to cards
 var getData = function(dt){
   $('#lect-answers').children().remove();
     for (var i = 0; i < dt.length; i++) {
@@ -136,6 +148,7 @@ var getData = function(dt){
     }
 };
 
+// pass json data to word cloud
 var getWords = function(dt){
   var initialArray = [];
   var words_array = [];
@@ -145,33 +158,20 @@ var getWords = function(dt){
   words_array = createObjectArray(initialArray);
   $("#cloud").jQCloud(words_array ,{
       autoResize: true,
-      colors: ["cornflowerblue",
-  			"olivedrab",
-  			"orange",
-  			"tomato",
-  			"crimson",
-  			"purple",
-  			"turquoise",
-  			"forestgreen",
-  			"navy",
-  			"gray"
-  		],
-      fontSize: {
-        from: 0.1,
-        to: 0.04
-      }
+      colors: colors,
+      fontSize: { from: 0.1, to: 0.04 }
     });
-
     $('#cloud').jQCloud('update', words_array);
 };
 
+// Creates an object array - word cloud data format
 function createObjectArray(wordsArray){
   var objectArray = [];
   var copyArray = wordsArray.slice(0);
 
-  for(var i=0; i<wordsArray.length;i++){
+  for(var i=0; i < wordsArray.length; i++){
     var counter = 0;
-    for(var w=0; w<copyArray.length;w++){
+    for(var y=0; y < copyArray.length; y++){
       if(wordsArray[i] == copyArray[w]){
         counter++;
         delete copyArray[w];

@@ -16,7 +16,6 @@ gem 'faker'
 gem 'dateslices'
 gem 'impressionist'
 gem 'momentjs-rails'
-
 gem 'jquery-validation-rails'
 
 # Use Uglifier as compressor for JavaScript assets
