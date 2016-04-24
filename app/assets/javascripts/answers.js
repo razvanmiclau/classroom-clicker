@@ -172,9 +172,9 @@ function createObjectArray(wordsArray){
   for(var i=0; i < wordsArray.length; i++){
     var counter = 0;
     for(var y=0; y < copyArray.length; y++){
-      if(wordsArray[i] == copyArray[w]){
+      if(wordsArray[i] == copyArray[y]){
         counter++;
-        delete copyArray[w];
+        delete copyArray[y];
       }
     }
     if(counter > 0){

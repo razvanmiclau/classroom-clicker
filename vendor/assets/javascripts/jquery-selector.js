@@ -1,3 +1,7 @@
+/*
+  https://github.com/Verba/jquery-readyselector
+*/
+
 (function ($) {
   var ready = $.fn.ready;
   $.fn.ready = function (fn) {
