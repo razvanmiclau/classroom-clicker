@@ -31,18 +31,20 @@
                           <% end %>
                         </li>
                       <% end %>
-                      <li>
-                        <%= link_to "#tab-stats", data: { toggle: "tab" } do %>
-                          <span class="glyphicon glyphicon-stats"></span>
-                          Bar Chart
-                        <% end %>
-                      </li>
-                      <li>
-                        <%= link_to "#tab-pie", data: { toggle: "tab" } do %>
-                          <span class="glyphicon glyphicon-pie"></span>
-                          Pie Chart
-                        <% end %>
-                      </li>
+                      <% if @question.kind != 'Open Question' %>
+                        <li>
+                          <%= link_to "#tab-stats", data: { toggle: "tab" } do %>
+                            <span class="glyphicon glyphicon-stats"></span>
+                            Bar Chart
+                          <% end %>
+                        </li>
+                        <li>
+                          <%= link_to "#tab-pie", data: { toggle: "tab" } do %>
+                            <span class="glyphicon glyphicon-pie"></span>
+                            Pie Chart
+                          <% end %>
+                        </li>
+                      <% end %>
                     </ul>
                   <% end %>
                 </li>
