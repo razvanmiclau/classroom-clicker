@@ -14,10 +14,6 @@ class AnswersController < ApplicationController
   def index
     @answers = @responds.order('created_at desc')
     @answer = @responds.build
-    @visit = @responds.first
-    if @answers.any?
-      impressionist(@visit)
-    end
     impressionist(@question, 'visited')
   end
 

@@ -13,30 +13,15 @@ class QuestionsController < ApplicationController
     @answers = @question.answers.all
     @domain = request.base_url
     @tinyURL = TinyurlShortener.shorten(@domain + topic_question_answers_path(@topic, @question, @answer))
-    @visits = @question.answers.first
-
-    # CALCULATE ENGAGEMENT RATE
-    if @answers.count != 0
-      @question.engagement_rate = (@answers.count*100)/(@visits.impressionist_count.nonzero? || 1)
-        if @question.engagement_rate.between? 0, 25
-          @rate = 'POOR'
-        elsif @question.engagement_rate.between? 25, 50
-          @rate = 'AVERAGE'
-        elsif @question.engagement_rate.between? 50, 75
-          @rate = 'GOOD'
-        elsif @question.engagement_rate > 100
-          @question.engagement_rate = 100
-        else
-          @rate = 'EXCELLENT'
-        end
-      @question.save!
-    end
+    @visits = @question.impressionist_count
   end
 
   def statistics
     @question = Question.find(params[:question_id])
     @answers = @question.answers
-    @visits = @question.answers.first
+    @visits = @question.impressionist_count
+    calculate_engagement_rate(@question,@answers,@visits)
+    @question.save!
   end
 
   def data
@@ -67,7 +52,7 @@ class QuestionsController < ApplicationController
           #   q.answers.first.impressionist_count = 0
           # end
           answers.push([q['title'], q.answers.count])
-          visits.push([q['title'], q.answers.first.impressionist_count])
+          visits.push([q['title'], q.impressionist_count])
           rates.push([q['title'], q['engagement_rate']])
         end
         @answersObject[:data] = answers
@@ -135,6 +120,24 @@ class QuestionsController < ApplicationController
 
     def set_topic
       @topic = Topic.friendly.find(params[:topic_id])
+    end
+
+    # CALCULATE ENGAGEMENT RATE
+    def calculate_engagement_rate(question,answers,visits)
+      if answers.count != 0
+        question.engagement_rate = (answers.count*100)/(visits.nonzero? || 1)
+          if question.engagement_rate.between? 0, 25
+            @rate = 'POOR'
+          elsif question.engagement_rate.between? 25, 50
+            @rate = 'AVERAGE'
+          elsif question.engagement_rate.between? 50, 75
+            @rate = 'GOOD'
+          elsif question.engagement_rate > 100
+            question.engagement_rate = 100
+          else
+            @rate = 'EXCELLENT'
+          end
+      end
     end
 
     def question_params

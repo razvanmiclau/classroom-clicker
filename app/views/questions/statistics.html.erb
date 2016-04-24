@@ -3,7 +3,7 @@
     <div class="card">
       <div class="header">
         <h2 class="title"><%= @question.title %></h2>
-        <p class="category">Different stats about this answer</p>
+        <p class="category">A list of all the answers received for this question</p>
       </div>
       <div class="content">
         <div class="table-full-width">
@@ -33,10 +33,10 @@
     <div class="card">
       <div class="header">
         <h2 class="title">Student Engagement</h2>
-        <p class="category">Visits / Answers</p>
+        <p class="category">A comparisson between the number of visits and the number of answers</p>
       </div>
       <div class="content">
-        <%= pie_chart answers: @answers.count,visits: @visits.impressionist_count %>
+        <%= pie_chart answers: @answers.count,visits: @visits %>
         <div class="footer">
           <div class="category">
             Your Student Engagement Rate is <%= @question.engagement_rate %> %
@@ -52,6 +52,7 @@
     <div class="card">
       <div class="header">
         <h2 class="title">Number of answers per minute</h2>
+        <p class="category">See which part of the lecture is more likely to receive answers from students</p>
       </div>
       <div class="content">
         <%= line_chart @answers.group_by_minute %>
@@ -69,6 +70,7 @@
     <div class="card">
       <div class="header">
         <h2 class="title">Most visited questions</h2>
+        <p class="category">Compare question statistics</p>
       </div>
       <div class="content">
         <%= column_chart topic_question_data_path %>

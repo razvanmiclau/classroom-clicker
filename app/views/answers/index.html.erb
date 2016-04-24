@@ -4,9 +4,9 @@
       <div class="header">
         <h1 class="title text-center"><%= @question.title %></h1>
         <% if @answers.any? %>
-          <p class="category text-center">You are the <%= @visit.impressionist_count + 1 %>th visitor</p>
+          <p class="category text-center">You are the <%= @question.impressionist_count%>th visitor</p>
         <% else %>
-          <p class="category text-center">Be the first student who answers this questions!</p>
+          <p class="category text-center">Be the first student who answers this question!</p>
         <% end %>
         <br>
         <%= render "form_container" %>
