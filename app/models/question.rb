@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+  is_impressionable :through => :answers
   before_create :set_uuid
   self.primary_key = :uuid
 

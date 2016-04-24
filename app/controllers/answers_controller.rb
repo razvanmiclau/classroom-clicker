@@ -18,6 +18,7 @@ class AnswersController < ApplicationController
     if @answers.any?
       impressionist(@visit)
     end
+    impressionist(@question, 'visited')
   end
 
   def new
