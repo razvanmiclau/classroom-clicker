@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="col-md-8">
-    <%= f.text_field :value, skip_label: true, placeholder: 'Please type your answer here...', :class => "required" %>
+    <%= f.text_field :value, skip_label: true, placeholder: 'Please type your answer here...', :class => "required student_input", :autofocus => true %>
   </div>
   <div class="col-md-4">
     <%= f.submit "Submit", class: "btn btn-primary btn-fill btn-wd vote-btn" %>
