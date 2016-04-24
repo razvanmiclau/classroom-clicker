@@ -14,6 +14,8 @@ class ApplicationController < ActionController::Base
   end
 
   # Returns user or guest user
+  # Code provided by the Devise Gem Documentation
+  # https://github.com/plataformatec/devise/wiki/How-To:-Create-a-guest-user
   def current_or_guest_user
     if current_user
       if session[:guest_user_id] && session[:guest_user_id] != current_user.id
