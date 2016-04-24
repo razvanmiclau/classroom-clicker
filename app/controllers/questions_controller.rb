@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @questions = @topic.questions.order('created_at desc')
+    @questions = @topic.questions.all
   end
 
   def show
@@ -63,6 +63,9 @@ class QuestionsController < ApplicationController
         rates = []
 
         questionsHash.each do |q|
+          # if q.answers.first.impressionist_count.nil?
+          #   q.answers.first.impressionist_count = 0
+          # end
           answers.push([q['title'], q.answers.count])
           visits.push([q['title'], q.answers.first.impressionist_count])
           rates.push([q['title'], q['engagement_rate']])
