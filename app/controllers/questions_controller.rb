@@ -6,7 +6,7 @@ class QuestionsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @questions = @topic.questions.all
+    @questions = @topic.questions.order('created_at desc')
   end
 
   def show

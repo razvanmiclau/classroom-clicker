@@ -4,7 +4,7 @@ class TopicsController < ApplicationController
   respond_to :html, :js
 
   def index
-    @topics = current_user.topics
+    @topics = current_user.topics.order('created_at desc')
     @topics_count = current_user.topics.count
   end
 

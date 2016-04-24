@@ -12,7 +12,7 @@ class AnswersController < ApplicationController
   end
 
   def index
-    @answers = @responds.all
+    @answers = @responds.order('created_at desc')
     @answer = @responds.build
     @visit = @responds.first
     if @answers.any?
@@ -25,7 +25,7 @@ class AnswersController < ApplicationController
   end
 
   def create
-    @answers = @responds.all
+    @answers = @responds.order('created_at desc')
     @answer = @responds.build(answer_params)
     respond_to do |format|
         if @answer.save
