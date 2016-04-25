@@ -53,11 +53,11 @@
             </div><br><hr>
             <div class="description text-center">
               <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <h3><%= current_user.topics.count %><br><small>Classrooms</small></h3>
                 </div>
 
-                <div class="col-md-4">
+                <div class="col-md-6">
                   <h3>
                     <% if current_user.topics.any? %>
                       <%= current_user.questions.count %>
@@ -65,17 +65,6 @@
                       0
                     <% end %>
                     <br><small>Questions</small>
-                  </h3>
-                </div>
-
-                <div class="col-md-4">
-                  <h3>
-                    <% if current_user.questions.any? %>
-                      <%= current_user.answers.count %>
-                    <% else %>
-                      0
-                    <% end %>
-                    <br><small>Answers</small>
                   </h3>
                 </div>
               </div>

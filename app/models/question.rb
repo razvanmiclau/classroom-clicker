@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  is_impressionable :through => :answers
+  is_impressionable :through => :answers  #:unique => :request_hash to store unique sessions
   before_create :set_uuid
   self.primary_key = :uuid
 

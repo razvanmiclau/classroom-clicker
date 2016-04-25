@@ -19,7 +19,7 @@ class QuestionsController < ApplicationController
   def statistics
     @question = Question.find(params[:question_id])
     @answers = @question.answers
-    @visits = @question.impressionist_count
+    @visits = @question.impressionist_count #:filter=>:session_hash
     calculate_engagement_rate(@question,@answers,@visits)
     @question.save!
   end
@@ -37,7 +37,7 @@ class QuestionsController < ApplicationController
 
       questionsHash.each do |q|
           answers.push([q['title'], q.answers.count])
-          visits.push([q['title'], q.impressionist_count])
+          visits.push([q['title'], q.impressionist_count]) #:filter=>:session_hash
           rates.push([q['title'], q['engagement_rate']])
       end
 

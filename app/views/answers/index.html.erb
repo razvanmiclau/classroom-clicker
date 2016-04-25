@@ -26,7 +26,7 @@
             <hr>
             <div class="stats">
               <i class="glyphicon glyphicon-time"></i>
-              Updated <%= time_ago_in_words(@answers.last.created_at) %> ago
+              Updated <%= time_ago_in_words(@answers.first.created_at) %> ago
             </div>
           </div>
         <% end %>

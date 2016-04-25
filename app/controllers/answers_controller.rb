@@ -39,7 +39,6 @@ class AnswersController < ApplicationController
   def data
     @data = @responds.all
     @total = Question.where(:uuid => params[:question_id]).first.answers.group(:value).count
-    #valuesHash = @question.answers.all
     dataArray = Array.new
       @data.each do |key|
         dataArray.push(key['value'].split()) #[[1,2,3],[4,5,6]]

@@ -166,6 +166,7 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    pg (0.18.4-x64-mingw32)
     pry (0.10.3)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -318,6 +319,7 @@ DEPENDENCIES
   jquery-validation-rails
   launchy
   momentjs-rails
+  pg
   rails (= 4.2.4)
   rails_12factor
   rspec-rails
