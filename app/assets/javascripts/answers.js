@@ -14,7 +14,6 @@ var colors = ["cornflowerblue",
 var barChart;
 var pieChart;
 var answers = [];
-// var conjunction_list = ['it', 'the', 'for', 'so', 'but', 'or', 'yet', 'i', 'for', 'and', 'nor', 'yet', 'as', 'since', 'rather', 'than'];
 var dataRequest;
 
 $('.questions.show').ready(function(){
@@ -165,6 +164,7 @@ var getWords = function(dt){
 };
 
 // Creates an object array - word cloud data format
+// Algorithm based on this solution https://gist.github.com/ralphcrisostomo/3141412
 function createObjectArray(wordsArray){
   var objectArray = [];
   var copyArray = wordsArray.slice(0);

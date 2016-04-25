@@ -5,5 +5,4 @@ class Answer < ActiveRecord::Base
   validates :value,
     presence: true,
     length: {in: 2..140}
-
 end

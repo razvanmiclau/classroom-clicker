@@ -24,5 +24,4 @@ class Question < ActiveRecord::Base
     def generate_uuid
       SecureRandom.uuid.gsub(/\-/,'')
     end
-
 end
