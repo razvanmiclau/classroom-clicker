@@ -25,42 +25,27 @@ class QuestionsController < ApplicationController
   end
 
   def data
-    # {id: 1, title: 'What sup', answers: 5, visits: 5, ER: 100}
       questionsHash = @topic.questions.all
-      @questionsArray = Array.new
-        # questionsHash.each do |question|
-        #   @questionsArray.push(
-        #     { :id => question['id'],
-        #       :title => question['title'],
-        #       :answers => question.answers.count,
-        #       :visits => question.answers.first.impressionist_count,
-        #       :engagement_rate => question['engagement_rate']
-        #     }
-        #   )
-        # end
+      @questionsArray = []
+      @chartArray = []
+      @answersObject = {name: "answers"}
+      @visitsObject = {name: "visits"}
+      @rateObject = {name: "engagement rate"}
+      answers = []
+      visits = []
+      rates = []
 
-        @chartArray = Array.new
-        @answersObject = {name: "answers"}
-        @visitsObject = {name: "visits"}
-        @rateObject = {name: "engagement rate"}
-        answers = []
-        visits = []
-        rates = []
-
-        questionsHash.each do |q|
-          # if q.answers.first.impressionist_count.nil?
-          #   q.answers.first.impressionist_count = 0
-          # end
+      questionsHash.each do |q|
           answers.push([q['title'], q.answers.count])
           visits.push([q['title'], q.impressionist_count])
           rates.push([q['title'], q['engagement_rate']])
-        end
-        @answersObject[:data] = answers
-        @visitsObject[:data] = visits
-        @rateObject[:data] = rates
-        @chartArray.push(@answersObject, @visitsObject, @rateObject)
+      end
 
-    #render :json => @questionsArray.chart_json
+      @answersObject[:data] = answers
+      @visitsObject[:data] = visits
+      @rateObject[:data] = rates
+      @chartArray.push(@answersObject, @visitsObject, @rateObject)
+
     render :json => @chartArray
   end
 
